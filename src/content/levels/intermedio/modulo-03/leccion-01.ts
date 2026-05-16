@@ -1,4 +1,5 @@
 import type { Leccion } from '../../../../types';
+import { SETUP_EMPLEADOS_BASICO } from '../../ejemploSetups';
 
 export const leccion: Leccion = {
   id: 'in-03-01',
@@ -26,6 +27,7 @@ export const leccion: Leccion = {
       titulo: 'CTE para estadísticas por departamento',
       descripcion: 'Primero calculamos estadísticas por departamento en la CTE, luego filtramos los departamentos con salario promedio alto.',
       sql: "WITH stats_dept AS (\n  SELECT departamento, COUNT(*) AS total, AVG(salario) AS salario_prom\n  FROM empleados\n  GROUP BY departamento\n)\nSELECT departamento, total, ROUND(salario_prom, 0) AS salario_prom\nFROM stats_dept\nWHERE salario_prom > 50000\nORDER BY salario_prom DESC;",
+  setupSql: SETUP_EMPLEADOS_BASICO,
       tablaResultado: {
         columnas: ['departamento', 'total', 'salario_prom'],
         filas: [

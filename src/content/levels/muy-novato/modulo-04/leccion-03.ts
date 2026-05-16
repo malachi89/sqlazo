@@ -1,4 +1,5 @@
 import type { Leccion } from '../../../../types';
+import { SETUP_EMPLEADOS_BASICO } from '../../ejemploSetups';
 
 export const leccion: Leccion = {
   id: 'mn-04-03',
@@ -21,6 +22,7 @@ export const leccion: Leccion = {
       titulo: 'Renombrar columnas',
       descripcion: 'Las columnas "nombre" y "apellido" las renombramos a "Nombre completo" en el resultado.',
       sql: "SELECT nombre AS 'Nombre', apellido AS 'Apellido', salario AS 'Salario mensual' FROM empleados;",
+  setupSql: SETUP_EMPLEADOS_BASICO,
       tablaResultado: {
         columnas: ['Nombre', 'Apellido', 'Salario mensual'],
         filas: [

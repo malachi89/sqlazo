@@ -37,7 +37,7 @@ export function LessonPage() {
         <span className="text-gray-700 dark:text-gray-200 font-medium truncate max-w-xs">{leccion.titulo}</span>
       </div>
 
-      <LessonView leccion={leccion} />
+      <LessonView key={leccion.id} leccion={leccion} />
 
       {/* Navegación */}
       <div className="max-w-3xl mx-auto mt-8 flex items-center justify-between">

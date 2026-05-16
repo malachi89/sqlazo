@@ -1,4 +1,5 @@
 import type { Leccion } from '../../../../types';
+import { SETUP_EMPLEADOS_BASICO } from '../../ejemploSetups';
 
 export const leccion: Leccion = {
   id: 'no-01-03',
@@ -26,6 +27,7 @@ export const leccion: Leccion = {
       titulo: 'Contar empleados por departamento',
       descripcion: 'Agrupamos empleados por departamento y contamos cuántos hay en cada uno.',
       sql: 'SELECT departamento, COUNT(*) AS cantidad FROM empleados GROUP BY departamento ORDER BY cantidad DESC;',
+  setupSql: SETUP_EMPLEADOS_BASICO,
       tablaResultado: {
         columnas: ['departamento', 'cantidad'],
         filas: [
@@ -40,6 +42,7 @@ export const leccion: Leccion = {
       titulo: 'Salario promedio por departamento',
       descripcion: 'Calculamos el salario promedio de cada departamento.',
       sql: 'SELECT departamento, AVG(salario) AS salario_promedio, MAX(salario) AS salario_max FROM empleados GROUP BY departamento;',
+  setupSql: SETUP_EMPLEADOS_BASICO,
       tablaResultado: {
         columnas: ['departamento', 'salario_promedio', 'salario_max'],
         filas: [

@@ -1,4 +1,5 @@
 import type { Leccion } from '../../../../types';
+import { SETUP_CLIENTES_PEDIDOS } from '../../ejemploSetups';
 
 export const leccion: Leccion = {
   id: 'no-02-01',
@@ -36,6 +37,7 @@ export const leccion: Leccion = {
       titulo: 'Pedidos con nombre del cliente',
       descripcion: 'Combinamos pedidos con clientes para ver el nombre del cliente en cada pedido.',
       sql: 'SELECT p.id, c.nombre, p.total FROM pedidos p INNER JOIN clientes c ON p.cliente_id = c.id ORDER BY p.id;',
+  setupSql: SETUP_CLIENTES_PEDIDOS,
       tablaResultado: {
         columnas: ['id', 'nombre', 'total'],
         filas: [

@@ -4,7 +4,7 @@ export type SeccionContenido =
   | { tipo: 'introduccion'; texto: string }
   | { tipo: 'explicacion'; titulo: string; texto: string }
   | { tipo: 'analogia'; icono: string; texto: string }
-  | { tipo: 'ejemplo'; titulo: string; descripcion: string; sql: string; tablaResultado: { columnas: string[]; filas: (string | number | null)[][] } }
+  | { tipo: 'ejemplo'; titulo: string; descripcion: string; sql: string; setupSql?: string; tablaResultado: { columnas: string[]; filas: (string | number | null)[][] } }
   | { tipo: 'tabla-visual'; titulo: string; cabeceras: string[]; filas: (string | number | null)[][] }
   | { tipo: 'error-comun'; titulo: string; codigoMal: string; problema: string; codigoBien: string; solucion: string }
   | { tipo: 'resumen'; puntos: string[] }

@@ -1,4 +1,5 @@
 import type { Leccion } from '../../../../types';
+import { SETUP_EMPLEADOS_BASICO } from '../../ejemploSetups';
 
 export const leccion: Leccion = {
   id: 'av-01-01',
@@ -36,6 +37,7 @@ export const leccion: Leccion = {
       titulo: 'Salario vs promedio del departamento',
       descripcion: 'Para cada empleado, mostramos su salario Y el promedio de su departamento en la misma fila.',
       sql: 'SELECT nombre, departamento, salario, AVG(salario) OVER (PARTITION BY departamento) AS promedio_depto FROM empleados ORDER BY departamento, salario DESC;',
+  setupSql: SETUP_EMPLEADOS_BASICO,
       tablaResultado: {
         columnas: ['nombre', 'departamento', 'salario', 'promedio_depto'],
         filas: [

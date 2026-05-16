@@ -1,4 +1,5 @@
 import type { Leccion } from '../../../../types';
+import { SETUP_EMPLEADOS_BASICO } from '../../ejemploSetups';
 
 export const leccion: Leccion = {
   id: 'in-04-03',
@@ -25,6 +26,7 @@ export const leccion: Leccion = {
       titulo: 'Eliminar empleados inactivos',
       descripcion: 'Eliminamos empleados con estado inactivo (activo = 0).',
       sql: 'DELETE FROM empleados WHERE activo = 0;\nSELECT COUNT(*) AS empleados_activos FROM empleados;',
+  setupSql: SETUP_EMPLEADOS_BASICO,
       tablaResultado: {
         columnas: ['empleados_activos'],
         filas: [[4]],

@@ -1,4 +1,5 @@
 import type { Leccion } from '../../../../types';
+import { SETUP_VENDEDORES } from '../../ejemploSetups';
 
 export const leccion: Leccion = {
   id: 'av-01-02',
@@ -26,6 +27,7 @@ export const leccion: Leccion = {
       titulo: 'Top 2 vendedores por región',
       descripcion: 'Usamos ROW_NUMBER con PARTITION BY para obtener el top 2 en cada región.',
       sql: "WITH ranked AS (\n  SELECT nombre, region, ventas,\n    ROW_NUMBER() OVER (PARTITION BY region ORDER BY ventas DESC) AS rn\n  FROM vendedores\n)\nSELECT nombre, region, ventas\nFROM ranked\nWHERE rn <= 2\nORDER BY region, ventas DESC;",
+  setupSql: SETUP_VENDEDORES,
       tablaResultado: {
         columnas: ['nombre', 'region', 'ventas'],
         filas: [

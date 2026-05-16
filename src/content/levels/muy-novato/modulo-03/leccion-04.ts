@@ -1,4 +1,5 @@
 import type { Leccion } from '../../../../types';
+import { SETUP_EMPLEADOS_CON_FECHA, SETUP_PRODUCTOS } from '../../ejemploSetups';
 
 export const leccion: Leccion = {
   id: 'mn-03-04',
@@ -21,6 +22,7 @@ export const leccion: Leccion = {
       titulo: 'Empleados de Ventas, RRHH o Tecnología',
       descripcion: 'Usamos IN en lugar de múltiples OR para filtrar varios departamentos.',
       sql: "SELECT nombre, departamento FROM empleados WHERE departamento IN ('Ventas', 'RRHH', 'Tecnología');",
+  setupSql: SETUP_EMPLEADOS_CON_FECHA,
       tablaResultado: {
         columnas: ['nombre', 'departamento'],
         filas: [
@@ -47,6 +49,7 @@ export const leccion: Leccion = {
       titulo: 'Productos con precio entre $50 y $200',
       descripcion: 'BETWEEN es inclusivo: incluye los productos con precio exactamente $50 y exactamente $200.',
       sql: 'SELECT nombre, precio FROM productos WHERE precio BETWEEN 50 AND 200;',
+  setupSql: SETUP_PRODUCTOS,
       tablaResultado: {
         columnas: ['nombre', 'precio'],
         filas: [

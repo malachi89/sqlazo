@@ -23,13 +23,16 @@ function inlineSqlWasm() {
   }
 }
 
-export default defineConfig({
+export default defineConfig(({ command }) => ({
   base: './',
   plugins: [
     react(),
     inlineSqlWasm(),
-    viteSingleFile(),
+    ...(command === 'build' ? [viteSingleFile()] : []),
   ],
+  server: {
+    open: true,
+  },
   build: {
     target: 'esnext',
     rollupOptions: {
@@ -38,7 +41,4 @@ export default defineConfig({
       },
     },
   },
-  optimizeDeps: {
-    exclude: ['sql.js'],
-  },
-})
+}))

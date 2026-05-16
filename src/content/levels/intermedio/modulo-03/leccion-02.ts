@@ -1,4 +1,5 @@
 import type { Leccion } from '../../../../types';
+import { SETUP_DETALLES_PEDIDO } from '../../ejemploSetups';
 
 export const leccion: Leccion = {
   id: 'in-03-02',
@@ -16,6 +17,7 @@ export const leccion: Leccion = {
       titulo: 'Pipeline de análisis con múltiples CTEs',
       descripcion: 'CTE1 calcula ventas por producto. CTE2 calcula el ranking. La consulta final filtra el top 3.',
       sql: "WITH ventas_producto AS (\n  SELECT producto_id, SUM(cantidad * precio) AS total_ventas\n  FROM detalles_pedido\n  GROUP BY producto_id\n),\nranking AS (\n  SELECT p.nombre, v.total_ventas,\n    ROW_NUMBER() OVER (ORDER BY v.total_ventas DESC) AS posicion\n  FROM productos p\n  INNER JOIN ventas_producto v ON p.id = v.producto_id\n)\nSELECT posicion, nombre, total_ventas\nFROM ranking\nWHERE posicion <= 3;",
+  setupSql: SETUP_DETALLES_PEDIDO,
       tablaResultado: {
         columnas: ['posicion', 'nombre', 'total_ventas'],
         filas: [

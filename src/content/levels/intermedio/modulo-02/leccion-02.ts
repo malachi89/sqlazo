@@ -1,4 +1,5 @@
 import type { Leccion } from '../../../../types';
+import { SETUP_PRODUCTOS } from '../../ejemploSetups';
 
 export const leccion: Leccion = {
   id: 'in-02-02',
@@ -32,6 +33,7 @@ export const leccion: Leccion = {
       titulo: 'Calcular precios con descuento',
       descripcion: 'Calculamos el precio con un 15% de descuento, redondeado a 2 decimales.',
       sql: 'SELECT nombre, precio, ROUND(precio * 0.85, 2) AS precio_con_descuento FROM productos;',
+  setupSql: SETUP_PRODUCTOS,
       tablaResultado: {
         columnas: ['nombre', 'precio', 'precio_con_descuento'],
         filas: [

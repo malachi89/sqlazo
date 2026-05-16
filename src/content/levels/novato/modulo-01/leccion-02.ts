@@ -1,4 +1,5 @@
 import type { Leccion } from '../../../../types';
+import { SETUP_EMPLEADOS_BASICO } from '../../ejemploSetups';
 
 export const leccion: Leccion = {
   id: 'no-01-02',
@@ -27,6 +28,7 @@ export const leccion: Leccion = {
       titulo: 'Estadísticas de salarios',
       descripcion: 'En una sola consulta obtenemos suma, promedio, mínimo y máximo de salarios.',
       sql: 'SELECT SUM(salario) AS total_nomina, AVG(salario) AS salario_promedio, MIN(salario) AS salario_minimo, MAX(salario) AS salario_maximo FROM empleados;',
+  setupSql: SETUP_EMPLEADOS_BASICO,
       tablaResultado: {
         columnas: ['total_nomina', 'salario_promedio', 'salario_minimo', 'salario_maximo'],
         filas: [[270000, 54000, 42000, 70000]],

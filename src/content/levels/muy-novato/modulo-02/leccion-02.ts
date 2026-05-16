@@ -1,4 +1,5 @@
 import type { Leccion } from '../../../../types';
+import { SETUP_EMPLEADOS_BASICO, SETUP_PRODUCTOS } from '../../ejemploSetups';
 
 export const leccion: Leccion = {
   id: 'mn-02-02',
@@ -21,6 +22,7 @@ export const leccion: Leccion = {
       titulo: 'Solo nombre y precio',
       descripcion: 'En vez de ver todos los datos, solo nos interesa el nombre y precio de cada producto.',
       sql: 'SELECT nombre, precio FROM productos;',
+  setupSql: SETUP_PRODUCTOS,
       tablaResultado: {
         columnas: ['nombre', 'precio'],
         filas: [
@@ -41,6 +43,7 @@ export const leccion: Leccion = {
       titulo: 'Columnas en orden diferente',
       descripcion: 'Seleccionamos las columnas en un orden diferente al que están en la tabla.',
       sql: 'SELECT departamento, nombre, salario FROM empleados;',
+  setupSql: SETUP_EMPLEADOS_BASICO,
       tablaResultado: {
         columnas: ['departamento', 'nombre', 'salario'],
         filas: [

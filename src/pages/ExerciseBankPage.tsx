@@ -18,7 +18,23 @@ const todosLosEjercicios: EjercicioBanco[] = [
 
 export function ExerciseBankPage() {
   const [seleccionado, setSeleccionado] = useState<EjercicioBanco | null>(null);
-  const { ready } = useSql();
+  const { ready, error } = useSql();
+
+  if (error) {
+    return (
+      <div className="flex flex-col items-center justify-center py-24 gap-4">
+        <span className="text-6xl">⚠️</span>
+        <p className="text-red-500 dark:text-red-400 text-sm font-medium">Error al inicializar el motor SQL</p>
+        <p className="text-gray-500 dark:text-gray-400 text-xs max-w-md text-center">{error}</p>
+        <button
+          onClick={() => window.location.reload()}
+          className="mt-2 px-4 py-2 text-sm bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
+        >
+          Reintentar
+        </button>
+      </div>
+    );
+  }
 
   if (!ready) {
     return (

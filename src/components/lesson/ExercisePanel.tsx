@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import type { EjercicioLeccion } from '../../types';
 import { SqlEditor } from '../editor/SqlEditor';
 import { ResultTable } from '../editor/ResultTable';
 import { FeedbackPanel } from '../editor/FeedbackPanel';
 import { useSql } from '../../hooks/useSql';
 import { evaluateQuery } from '../../utils/sqlEvaluator';
+import { extractSchema } from '../../utils/schemaParser';
+import { useSchema } from '../../context/SchemaContext';
 import { useProgress } from '../../hooks/useProgress';
 import { ConfettiEffect } from '../ui/ConfettiEffect';
 import { CheckCircle, Target } from 'lucide-react';
@@ -18,6 +20,13 @@ interface ExercisePanelProps {
 export function ExercisePanel({ ejercicio, leccionId, yaCompletado }: ExercisePanelProps) {
   const { executeQuery } = useSql();
   const { completarEjercicioLeccion } = useProgress();
+  const esquema = useMemo(() => extractSchema(ejercicio.setupSql), [ejercicio.setupSql]);
+  const { setEsquema } = useSchema();
+
+  useEffect(() => {
+    setEsquema(esquema)
+    return () => setEsquema(null)
+  }, [esquema, setEsquema])
   const [resultado, setResultado] = useState<any>(null);
   const [evaluacion, setEvaluacion] = useState<any>(null);
   const [intentos, setIntentos] = useState(0);

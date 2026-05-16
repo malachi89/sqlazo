@@ -1,4 +1,5 @@
 import type { Leccion } from '../../../../types';
+import { SETUP_CLIENTES_PEDIDOS } from '../../ejemploSetups';
 
 export const leccion: Leccion = {
   id: 'no-02-02',
@@ -32,6 +33,7 @@ export const leccion: Leccion = {
       titulo: 'Clientes con o sin pedidos',
       descripcion: 'Con LEFT JOIN vemos TODOS los clientes, incluso los que no han hecho pedidos (aparecen con NULL en las columnas de pedidos).',
       sql: 'SELECT c.nombre, p.id AS pedido_id, p.total FROM clientes c LEFT JOIN pedidos p ON c.id = p.cliente_id ORDER BY c.nombre;',
+  setupSql: SETUP_CLIENTES_PEDIDOS,
       tablaResultado: {
         columnas: ['nombre', 'pedido_id', 'total'],
         filas: [

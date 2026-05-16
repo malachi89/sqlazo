@@ -1,4 +1,5 @@
 import type { Leccion } from '../../../../types';
+import { SETUP_EMPLEADOS_DEPARTAMENTOS } from '../../ejemploSetups';
 
 export const leccion: Leccion = {
   id: 'in-05-01',
@@ -26,6 +27,7 @@ export const leccion: Leccion = {
       titulo: 'Vista de empleados activos con departamento',
       descripcion: 'Creamos una vista que simplifica el JOIN entre empleados y departamentos.',
       sql: "CREATE VIEW vista_empleados AS\n  SELECT e.nombre, e.salario, d.nombre AS departamento, d.ciudad\n  FROM empleados e\n  INNER JOIN departamentos d ON e.departamento_id = d.id\n  WHERE e.activo = 1;\n\nSELECT * FROM vista_empleados WHERE ciudad = 'Madrid';",
+  setupSql: SETUP_EMPLEADOS_DEPARTAMENTOS,
       tablaResultado: {
         columnas: ['nombre', 'salario', 'departamento', 'ciudad'],
         filas: [

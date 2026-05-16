@@ -1,4 +1,5 @@
 import type { Leccion } from '../../../../types';
+import { SETUP_VENTAS_MENSUALES } from '../../ejemploSetups';
 
 export const leccion: Leccion = {
   id: 'av-01-03',
@@ -27,6 +28,7 @@ export const leccion: Leccion = {
       titulo: 'Variación de ventas mes a mes',
       descripcion: 'Calculamos cuánto variaron las ventas respecto al mes anterior.',
       sql: "SELECT mes, ventas, LAG(ventas, 1) OVER (ORDER BY mes) AS ventas_mes_anterior,\n  ventas - LAG(ventas, 1) OVER (ORDER BY mes) AS variacion\nFROM ventas_mensuales ORDER BY mes;",
+      setupSql: SETUP_VENTAS_MENSUALES,
       tablaResultado: {
         columnas: ['mes', 'ventas', 'ventas_mes_anterior', 'variacion'],
         filas: [

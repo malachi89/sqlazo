@@ -1,4 +1,5 @@
 import type { Leccion } from '../../../../types';
+import { SETUP_EMPLEADOS_BASICO, SETUP_PRODUCTOS } from '../../ejemploSetups';
 
 export const leccion: Leccion = {
   id: 'mn-03-01',
@@ -21,6 +22,7 @@ export const leccion: Leccion = {
       titulo: 'Productos ordenados por precio (de menor a mayor)',
       descripcion: 'Ordenamos los productos por precio ascendente (el más barato primero).',
       sql: 'SELECT nombre, precio FROM productos ORDER BY precio ASC;',
+  setupSql: SETUP_PRODUCTOS,
       tablaResultado: {
         columnas: ['nombre', 'precio'],
         filas: [
@@ -38,6 +40,7 @@ export const leccion: Leccion = {
       titulo: 'Empleados ordenados por salario (de mayor a menor)',
       descripcion: 'Ordenamos los empleados por salario descendente (el mejor pagado primero).',
       sql: 'SELECT nombre, salario FROM empleados ORDER BY salario DESC;',
+  setupSql: SETUP_EMPLEADOS_BASICO,
       tablaResultado: {
         columnas: ['nombre', 'salario'],
         filas: [
@@ -59,6 +62,7 @@ export const leccion: Leccion = {
       titulo: 'Orden múltiple: departamento y salario',
       descripcion: 'Primero por departamento (A-Z), luego por salario (mayor a menor) dentro de cada departamento.',
       sql: 'SELECT nombre, departamento, salario FROM empleados ORDER BY departamento ASC, salario DESC;',
+  setupSql: SETUP_EMPLEADOS_BASICO,
       tablaResultado: {
         columnas: ['nombre', 'departamento', 'salario'],
         filas: [

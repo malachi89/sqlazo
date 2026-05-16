@@ -1,4 +1,5 @@
 import type { Leccion } from '../../../../types';
+import { SETUP_EMPLEADOS_BASICO } from '../../ejemploSetups';
 
 export const leccion: Leccion = {
   id: 'av-04-01',
@@ -21,6 +22,7 @@ export const leccion: Leccion = {
       titulo: 'Trigger de auditoría',
       descripcion: 'Registramos automáticamente cada cambio de salario en una tabla de auditoría.',
       sql: "CREATE TRIGGER audit_salario\n  AFTER UPDATE OF salario ON empleados\nBEGIN\n  INSERT INTO auditoria (tabla, empleado_id, campo, valor_anterior, valor_nuevo, fecha)\n  VALUES ('empleados', OLD.id, 'salario', OLD.salario, NEW.salario, datetime('now'));\nEND;",
+      setupSql: SETUP_EMPLEADOS_BASICO,
       tablaResultado: {
         columnas: ['Resultado'],
         filas: [['Trigger creado. Cada cambio de salario se registra automáticamente.']],

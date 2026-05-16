@@ -1,4 +1,5 @@
 import type { Leccion } from '../../../../types';
+import { SETUP_EMPLEADOS_BASICO } from '../../ejemploSetups';
 
 export const leccion: Leccion = {
   id: 'in-04-02',
@@ -25,6 +26,7 @@ export const leccion: Leccion = {
       titulo: 'Actualizar el salario de un empleado',
       descripcion: 'Actualizamos solo el empleado con id=2.',
       sql: 'UPDATE empleados SET salario = 70000 WHERE id = 2;\nSELECT nombre, salario FROM empleados WHERE id = 2;',
+  setupSql: SETUP_EMPLEADOS_BASICO,
       tablaResultado: {
         columnas: ['nombre', 'salario'],
         filas: [['Carlos', 70000]],

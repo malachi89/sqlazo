@@ -1,4 +1,5 @@
 import type { Leccion } from '../../../../types';
+import { SETUP_EMPLEADOS_BASICO } from '../../ejemploSetups';
 
 export const leccion: Leccion = {
   id: 'mn-02-04',
@@ -21,6 +22,7 @@ export const leccion: Leccion = {
       titulo: 'AND: Empleados de Ventas con salario alto',
       descripcion: 'Empleados del departamento de Ventas que ganen más de $43,000.',
       sql: "SELECT nombre, departamento, salario FROM empleados WHERE departamento = 'Ventas' AND salario > 43000;",
+  setupSql: SETUP_EMPLEADOS_BASICO,
       tablaResultado: {
         columnas: ['nombre', 'departamento', 'salario'],
         filas: [['María', 'Ventas', 45000]],
@@ -36,6 +38,7 @@ export const leccion: Leccion = {
       titulo: 'OR: Empleados de Ventas o RRHH',
       descripcion: 'Empleados que pertenezcan al departamento de Ventas o al de RRHH.',
       sql: "SELECT nombre, departamento FROM empleados WHERE departamento = 'Ventas' OR departamento = 'RRHH';",
+  setupSql: SETUP_EMPLEADOS_BASICO,
       tablaResultado: {
         columnas: ['nombre', 'departamento'],
         filas: [

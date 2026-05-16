@@ -1,4 +1,5 @@
 import type { Leccion } from '../../../../types';
+import { SETUP_EMPLEADOS_BASICO, SETUP_PRODUCTOS } from '../../ejemploSetups';
 
 export const leccion: Leccion = {
   id: 'mn-02-03',
@@ -45,6 +46,7 @@ export const leccion: Leccion = {
       titulo: 'Empleados del departamento de Ventas',
       descripcion: 'Filtramos solo los empleados cuyo departamento sea igual a "Ventas".',
       sql: "SELECT * FROM empleados WHERE departamento = 'Ventas';",
+  setupSql: SETUP_EMPLEADOS_BASICO,
       tablaResultado: {
         columnas: ['id', 'nombre', 'apellido', 'departamento', 'salario'],
         filas: [
@@ -58,6 +60,7 @@ export const leccion: Leccion = {
       titulo: 'Productos con precio mayor a $100',
       descripcion: 'Filtramos los productos cuyo precio sea mayor a 100.',
       sql: 'SELECT nombre, precio FROM productos WHERE precio > 100;',
+  setupSql: SETUP_PRODUCTOS,
       tablaResultado: {
         columnas: ['nombre', 'precio'],
         filas: [

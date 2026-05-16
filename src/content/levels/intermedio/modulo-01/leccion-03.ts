@@ -1,4 +1,5 @@
 import type { Leccion } from '../../../../types';
+import { SETUP_UNION } from '../../ejemploSetups';
 
 export const leccion: Leccion = {
   id: 'in-01-03',
@@ -21,6 +22,7 @@ export const leccion: Leccion = {
       titulo: 'Combinar empleados de dos oficinas',
       descripcion: 'Tenemos empleados en dos tablas separadas (Madrid y Barcelona) y queremos verlos juntos.',
       sql: "SELECT nombre, 'Madrid' AS oficina FROM empleados_madrid\nUNION ALL\nSELECT nombre, 'Barcelona' AS oficina FROM empleados_barcelona\nORDER BY nombre;",
+  setupSql: SETUP_UNION,
       tablaResultado: {
         columnas: ['nombre', 'oficina'],
         filas: [

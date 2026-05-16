@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import type { EjercicioBanco } from '../../types';
 import { SqlEditor } from '../editor/SqlEditor';
 import { ResultTable } from '../editor/ResultTable';
 import { FeedbackPanel } from '../editor/FeedbackPanel';
 import { useSql } from '../../hooks/useSql';
 import { evaluateBankExercise } from '../../utils/sqlEvaluator';
+import { extractSchema } from '../../utils/schemaParser';
+import { SchemaExplorer } from './SchemaExplorer';
+import { useSchema } from '../../context/SchemaContext';
 import { useProgress } from '../../hooks/useProgress';
 import { ConfettiEffect } from '../ui/ConfettiEffect';
 import { Badge } from '../ui/Badge';
@@ -22,6 +25,13 @@ export function ExerciseView({ ejercicio }: ExerciseViewProps) {
   const [intentos, setIntentos] = useState(0);
   const [confeti, setConfeti] = useState(false);
   const yaCompletado = progress.ejerciciosBanco[ejercicio.id] ?? false;
+  const esquema = useMemo(() => extractSchema(ejercicio.setupSql), [ejercicio.setupSql]);
+  const { setEsquema } = useSchema();
+
+  useEffect(() => {
+    setEsquema(esquema)
+    return () => setEsquema(null)
+  }, [esquema, setEsquema])
 
   const handleEjecutar = (query: string) => {
     const res = executeQuery(query, ejercicio.setupSql);
@@ -66,6 +76,9 @@ export function ExerciseView({ ejercicio }: ExerciseViewProps) {
           <p className="text-sm text-blue-800 dark:text-blue-200">{ejercicio.objetivo}</p>
         </div>
       </div>
+
+      {/* Schema */}
+      <SchemaExplorer esquema={esquema} />
 
       {/* Editor */}
       <SqlEditor valorInicial="" onEjecutar={handleEjecutar} altura="140px" />

@@ -1,4 +1,5 @@
 import type { Leccion } from '../../../../types';
+import { SETUP_EMPLEADOS_BASICO } from '../../ejemploSetups';
 
 export const leccion: Leccion = {
   id: 'no-01-01',
@@ -21,6 +22,7 @@ export const leccion: Leccion = {
       titulo: 'Contar todos los empleados',
       descripcion: 'COUNT(*) cuenta todas las filas sin importar NULLs.',
       sql: 'SELECT COUNT(*) AS total_empleados FROM empleados;',
+  setupSql: SETUP_EMPLEADOS_BASICO,
       tablaResultado: {
         columnas: ['total_empleados'],
         filas: [[5]],
@@ -31,6 +33,7 @@ export const leccion: Leccion = {
       titulo: 'Contar empleados por departamento',
       descripcion: 'Con GROUP BY podemos contar empleados en cada departamento (lo veremos en detalle más adelante).',
       sql: 'SELECT departamento, COUNT(*) AS cantidad FROM empleados GROUP BY departamento;',
+  setupSql: SETUP_EMPLEADOS_BASICO,
       tablaResultado: {
         columnas: ['departamento', 'cantidad'],
         filas: [

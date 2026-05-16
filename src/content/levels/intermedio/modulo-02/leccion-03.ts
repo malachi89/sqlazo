@@ -1,4 +1,5 @@
 import type { Leccion } from '../../../../types';
+import { SETUP_CLIENTES_PEDIDOS, SETUP_EMPLEADOS_CON_FECHA } from '../../ejemploSetups';
 
 export const leccion: Leccion = {
   id: 'in-02-03',
@@ -36,6 +37,7 @@ export const leccion: Leccion = {
       titulo: 'Empleados contratados en 2023',
       descripcion: 'Filtramos empleados cuya fecha de contrato sea del año 2023.',
       sql: "SELECT nombre, fecha_contrato FROM empleados WHERE STRFTIME('%Y', fecha_contrato) = '2023' ORDER BY fecha_contrato;",
+  setupSql: SETUP_EMPLEADOS_CON_FECHA,
       tablaResultado: {
         columnas: ['nombre', 'fecha_contrato'],
         filas: [
@@ -49,6 +51,7 @@ export const leccion: Leccion = {
       titulo: 'Pedidos del último mes',
       descripcion: 'Filtramos pedidos realizados en los últimos 30 días.',
       sql: "SELECT id, fecha, total FROM pedidos WHERE fecha >= DATE('now', '-30 days') ORDER BY fecha DESC;",
+  setupSql: SETUP_CLIENTES_PEDIDOS,
       tablaResultado: {
         columnas: ['id', 'fecha', 'total'],
         filas: [[5, '2024-01-12', 250], [6, '2024-01-14', 89]],

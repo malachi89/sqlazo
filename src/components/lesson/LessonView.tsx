@@ -54,38 +54,29 @@ export function LessonView({ leccion }: LessonViewProps) {
     <div className="max-w-3xl mx-auto">
       <ConfettiEffect activo={confeti} onDone={() => setConfeti(false)} />
 
-      {/* Cabecera de la lección */}
-      <div className="mb-6 p-6 bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-700 shadow-sm">
-        <div className="flex flex-wrap items-center gap-2 mb-3">
+      {/* Cabecera compacta */}
+      <div className="mb-4">
+        <div className="flex flex-wrap items-center gap-2 mb-1">
           {leccion.conceptosClave.map(c => (
-            <span key={c} className="flex items-center gap-1 px-2.5 py-0.5 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-xs font-medium rounded-full">
+            <span key={c} className="flex items-center gap-1 px-2 py-0.5 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-xs font-medium rounded-full">
               <Tag size={10} /> {c}
             </span>
           ))}
-          <span className="flex items-center gap-1 px-2.5 py-0.5 text-xs text-gray-500 dark:text-gray-400 ml-auto">
-            <Clock size={12} /> {leccion.duracionMinutos} min
-          </span>
         </div>
-        <h1 className="text-2xl font-bold text-gray-900 dark:text-white">{leccion.titulo}</h1>
-        <p className="text-gray-500 dark:text-gray-400 mt-2 text-sm">{leccion.descripcion}</p>
-
-        {/* Progreso de la lección */}
-        <div className="mt-4 grid grid-cols-3 gap-3 text-center">
-          <div className="p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
-            <p className="text-lg font-bold text-gray-900 dark:text-white">{ejerciciosOk}/{totalEjercicios}</p>
-            <p className="text-xs text-gray-500">Ejercicios</p>
-          </div>
-          <div className="p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
-            <p className="text-lg font-bold text-gray-900 dark:text-white">{leccion.cuestionario.length > 0 ? (quizCompletado ? progresoLeccion?.quizPuntuacion + '%' : '—') : 'N/A'}</p>
-            <p className="text-xs text-gray-500">Quiz</p>
-          </div>
-          <div className="p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
-            <p className={`text-lg font-bold ${leccionCompletada ? 'text-green-500' : 'text-gray-400'}`}>
+        <div className="flex items-center justify-between gap-4">
+          <h1 className="text-xl font-bold text-gray-900 dark:text-white truncate">{leccion.titulo}</h1>
+          <div className="flex items-center gap-3 shrink-0 text-xs text-gray-500 dark:text-gray-400">
+            <span className="flex items-center gap-1 whitespace-nowrap">
+              <Clock size={12} /> {leccion.duracionMinutos} min
+            </span>
+            <span className="whitespace-nowrap">Ej: {ejerciciosOk}/{totalEjercicios}</span>
+            <span className="whitespace-nowrap">Quiz: {leccion.cuestionario.length > 0 ? (quizCompletado ? progresoLeccion?.quizPuntuacion + '%' : '—') : 'N/A'}</span>
+            <span className={`font-bold ${leccionCompletada ? 'text-green-500' : 'text-gray-300 dark:text-gray-600'}`}>
               {leccionCompletada ? '✓' : '○'}
-            </p>
-            <p className="text-xs text-gray-500">Estado</p>
+            </span>
           </div>
         </div>
+        <p className="text-gray-500 dark:text-gray-400 text-sm mt-1">{leccion.descripcion}</p>
       </div>
 
       {/* Tabs */}
@@ -113,33 +104,23 @@ export function LessonView({ leccion }: LessonViewProps) {
       <div className="bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-700 shadow-sm p-6">
         {pestana === 'contenido' && (
           <div>
-            <LessonContent secciones={leccion.contenido} />
-            {puedeCompletarLeccion && (
-              <div className="mt-8 flex justify-end">
-                <button
-                  onClick={handleCompletar}
-                  className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-medium rounded-xl shadow-lg transition-all"
-                >
-                  Marcar lección como completada <ChevronRight size={16} />
-                </button>
-              </div>
-            )}
+            <LessonContent
+              secciones={leccion.contenido}
+              onTerminar={
+                leccionCompletada
+                  ? undefined
+                  : totalEjercicios > 0
+                  ? () => setPestana('ejercicios')
+                  : leccion.cuestionario.length > 0
+                  ? () => setPestana('cuestionario')
+                  : puedeCompletarLeccion
+                  ? handleCompletar
+                  : undefined
+              }
+            />
             {leccionCompletada && (
-              <div className="mt-8 p-4 bg-green-50 dark:bg-green-900/20 rounded-xl border border-green-200 dark:border-green-700 text-center">
+              <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/20 rounded-xl border border-green-200 dark:border-green-700 text-center">
                 <p className="text-green-700 dark:text-green-300 font-medium">✓ Lección completada</p>
-              </div>
-            )}
-            {totalEjercicios > 0 && !leccionCompletada && (
-              <div className="mt-8 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-xl border border-blue-200 dark:border-blue-700 text-center">
-                <p className="text-blue-700 dark:text-blue-300 text-sm">
-                  Completa los <strong>{totalEjercicios} ejercicios</strong> y el cuestionario para finalizar la lección.
-                </p>
-                <button
-                  onClick={() => setPestana('ejercicios')}
-                  className="mt-2 text-sm text-blue-600 dark:text-blue-400 hover:underline font-medium flex items-center gap-1 mx-auto"
-                >
-                  Ir a ejercicios <ChevronRight size={14} />
-                </button>
               </div>
             )}
           </div>
@@ -168,6 +149,16 @@ export function LessonView({ leccion }: LessonViewProps) {
                     {i < leccion.ejercicios.length - 1 && <hr className="mt-8 border-gray-200 dark:border-gray-700" />}
                   </div>
                 ))}
+                {ejerciciosOk >= totalEjercicios && leccion.cuestionario.length > 0 && (
+                  <div className="text-center pt-4 border-t border-gray-200 dark:border-gray-700">
+                    <button
+                      onClick={() => setPestana('cuestionario')}
+                      className="inline-flex items-center gap-2 px-6 py-3 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-xl transition-colors"
+                    >
+                      Siguiente: Quiz <ChevronRight size={16} />
+                    </button>
+                  </div>
+                )}
               </>
             )}
           </div>

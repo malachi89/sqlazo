@@ -1,4 +1,5 @@
 import type { Leccion } from '../../../../types';
+import { SETUP_CLIENTES_PEDIDOS, SETUP_EMPLEADOS_BASICO } from '../../ejemploSetups';
 
 export const leccion: Leccion = {
   id: 'in-01-01',
@@ -26,6 +27,7 @@ export const leccion: Leccion = {
       titulo: 'Empleados con salario sobre el promedio',
       descripcion: 'La subconsulta calcula el promedio; la consulta exterior filtra con ese valor.',
       sql: 'SELECT nombre, salario FROM empleados WHERE salario > (SELECT AVG(salario) FROM empleados) ORDER BY salario DESC;',
+  setupSql: SETUP_EMPLEADOS_BASICO,
       tablaResultado: {
         columnas: ['nombre', 'salario'],
         filas: [
@@ -45,6 +47,7 @@ export const leccion: Leccion = {
       titulo: 'Clientes con pedidos grandes',
       descripcion: 'Subconsulta que devuelve IDs de clientes con pedidos > $200.',
       sql: 'SELECT nombre FROM clientes WHERE id IN (SELECT DISTINCT cliente_id FROM pedidos WHERE total > 200);',
+  setupSql: SETUP_CLIENTES_PEDIDOS,
       tablaResultado: {
         columnas: ['nombre'],
         filas: [['Carlos'], ['Eva']],

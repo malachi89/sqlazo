@@ -1,4 +1,5 @@
 import type { Leccion } from '../../../../types';
+import { SETUP_CLIENTES } from '../../ejemploSetups';
 
 export const leccion: Leccion = {
   id: 'no-01-05',
@@ -16,6 +17,7 @@ export const leccion: Leccion = {
       titulo: 'Qué países hay en la tabla de clientes',
       descripcion: 'Sin DISTINCT, veríamos el país de cada cliente (con repeticiones). Con DISTINCT, solo vemos cada país una vez.',
       sql: 'SELECT DISTINCT pais FROM clientes ORDER BY pais;',
+  setupSql: SETUP_CLIENTES,
       tablaResultado: {
         columnas: ['pais'],
         filas: [['Argentina'], ['España'], ['México'], ['USA']],

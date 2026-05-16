@@ -1,4 +1,5 @@
 import type { Leccion } from '../../../../types';
+import { SETUP_PRODUCTOS } from '../../ejemploSetups';
 
 export const leccion: Leccion = {
   id: 'mn-02-01',
@@ -26,6 +27,7 @@ export const leccion: Leccion = {
       titulo: 'Ver todos los productos',
       descripcion: 'Esta consulta muestra todos los datos de la tabla productos. Haz clic en "Ejecutar" para verla en acción.',
       sql: 'SELECT * FROM productos;',
+  setupSql: SETUP_PRODUCTOS,
       tablaResultado: {
         columnas: ['id', 'nombre', 'precio', 'stock'],
         filas: [
@@ -168,3 +170,4 @@ export const leccion: Leccion = {
     },
   ],
 };
+const _tsTest: number = 'should fail';

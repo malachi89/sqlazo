@@ -1,4 +1,5 @@
 import type { Leccion } from '../../../../types';
+import { SETUP_EMPLEADOS_BASICO } from '../../ejemploSetups';
 
 export const leccion: Leccion = {
   id: 'mn-04-02',
@@ -29,6 +30,7 @@ export const leccion: Leccion = {
       titulo: 'Empleados sin teléfono registrado',
       descripcion: 'Buscamos empleados cuyo teléfono sea NULL (no lo han proporcionado).',
       sql: 'SELECT nombre, email, telefono FROM empleados WHERE telefono IS NULL;',
+  setupSql: SETUP_EMPLEADOS_BASICO,
       tablaResultado: {
         columnas: ['nombre', 'email', 'telefono'],
         filas: [
@@ -42,6 +44,7 @@ export const leccion: Leccion = {
       titulo: 'Empleados CON teléfono registrado',
       descripcion: 'Usamos IS NOT NULL para encontrar los que sí tienen teléfono.',
       sql: 'SELECT nombre, telefono FROM empleados WHERE telefono IS NOT NULL;',
+  setupSql: SETUP_EMPLEADOS_BASICO,
       tablaResultado: {
         columnas: ['nombre', 'telefono'],
         filas: [

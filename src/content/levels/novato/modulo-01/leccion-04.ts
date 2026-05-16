@@ -1,4 +1,5 @@
 import type { Leccion } from '../../../../types';
+import { SETUP_EMPLEADOS_BASICO, SETUP_PRODUCTOS } from '../../ejemploSetups';
 
 export const leccion: Leccion = {
   id: 'no-01-04',
@@ -30,6 +31,7 @@ export const leccion: Leccion = {
       titulo: 'Departamentos con más de 2 empleados',
       descripcion: 'Primero agrupamos, luego filtramos grupos con más de 2 empleados.',
       sql: 'SELECT departamento, COUNT(*) AS cantidad FROM empleados GROUP BY departamento HAVING COUNT(*) > 2;',
+  setupSql: SETUP_EMPLEADOS_BASICO,
       tablaResultado: {
         columnas: ['departamento', 'cantidad'],
         filas: [['Tecnología', 3]],
@@ -40,6 +42,7 @@ export const leccion: Leccion = {
       titulo: 'Categorías con precio promedio mayor a $100',
       descripcion: 'Filtramos categorías donde el precio promedio supera los $100.',
       sql: 'SELECT categoria, AVG(precio) AS precio_prom FROM productos GROUP BY categoria HAVING AVG(precio) > 100;',
+  setupSql: SETUP_PRODUCTOS,
       tablaResultado: {
         columnas: ['categoria', 'precio_prom'],
         filas: [['Electrónica', 733.32]],

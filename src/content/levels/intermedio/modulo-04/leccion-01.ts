@@ -1,4 +1,5 @@
 import type { Leccion } from '../../../../types';
+import { SETUP_EMPLEADOS_BASICO } from '../../ejemploSetups';
 
 export const leccion: Leccion = {
   id: 'in-04-01',
@@ -21,6 +22,7 @@ export const leccion: Leccion = {
       titulo: 'Insertar un empleado',
       descripcion: 'Insertamos un nuevo empleado y luego verificamos que se agregó correctamente.',
       sql: "INSERT INTO empleados (nombre, departamento, salario) VALUES ('Sofía Ramos', 'Marketing', 52000);\nSELECT * FROM empleados WHERE nombre = 'Sofía Ramos';",
+  setupSql: SETUP_EMPLEADOS_BASICO,
       tablaResultado: {
         columnas: ['id', 'nombre', 'departamento', 'salario'],
         filas: [[6, 'Sofía Ramos', 'Marketing', 52000]],

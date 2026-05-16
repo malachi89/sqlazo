@@ -1,4 +1,5 @@
 import type { Leccion } from '../../../../types';
+import { SETUP_CLIENTES, SETUP_EMPLEADOS_BASICO } from '../../ejemploSetups';
 
 export const leccion: Leccion = {
   id: 'in-02-01',
@@ -32,6 +33,7 @@ export const leccion: Leccion = {
       titulo: 'Normalizar datos de clientes',
       descripcion: 'Convertimos nombres a formato capitalizado y emails a minúsculas.',
       sql: "SELECT UPPER(nombre) AS nombre_mayus, LOWER(email) AS email_norm, LENGTH(nombre) AS largo_nombre FROM clientes;",
+  setupSql: SETUP_CLIENTES,
       tablaResultado: {
         columnas: ['nombre_mayus', 'email_norm', 'largo_nombre'],
         filas: [
@@ -45,6 +47,7 @@ export const leccion: Leccion = {
       titulo: 'Extraer y combinar texto',
       descripcion: 'Usamos SUBSTR para extraer el primer nombre y || para concatenar.',
       sql: "SELECT nombre || ' ' || apellido AS nombre_completo, SUBSTR(email, 1, INSTR(email, '@') - 1) AS usuario FROM empleados;",
+  setupSql: SETUP_EMPLEADOS_BASICO,
       tablaResultado: {
         columnas: ['nombre_completo', 'usuario'],
         filas: [

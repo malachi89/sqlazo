@@ -1,4 +1,5 @@
 import type { Leccion } from '../../../../types';
+import { SETUP_EMPLEADOS_BASICO } from '../../ejemploSetups';
 
 export const leccion: Leccion = {
   id: 'av-02-02',
@@ -16,6 +17,7 @@ export const leccion: Leccion = {
       titulo: 'Sin índice vs con índice',
       descripcion: 'Vemos el plan de ejecución con y sin índice.',
       sql: "EXPLAIN QUERY PLAN SELECT * FROM empleados WHERE email = 'carlos@empresa.com';",
+  setupSql: SETUP_EMPLEADOS_BASICO,
       tablaResultado: {
         columnas: ['id', 'parent', 'notused', 'detail'],
         filas: [[2, 0, 0, 'SCAN empleados']],

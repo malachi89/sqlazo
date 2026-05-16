@@ -1,4 +1,5 @@
 import type { Leccion } from '../../../../types';
+import { SETUP_CLIENTES } from '../../ejemploSetups';
 
 export const leccion: Leccion = {
   id: 'mn-03-03',
@@ -33,6 +34,7 @@ export const leccion: Leccion = {
       titulo: 'Clientes cuyo nombre empieza con "A"',
       descripcion: 'El patrón "A%" significa: empieza con "A" y luego puede haber cualquier cosa.',
       sql: "SELECT nombre, email FROM clientes WHERE nombre LIKE 'A%';",
+  setupSql: SETUP_CLIENTES,
       tablaResultado: {
         columnas: ['nombre', 'email'],
         filas: [
@@ -46,6 +48,7 @@ export const leccion: Leccion = {
       titulo: 'Emails de Gmail',
       descripcion: 'El patrón "%@gmail.com" encuentra todos los emails que terminan en @gmail.com.',
       sql: "SELECT nombre, email FROM clientes WHERE email LIKE '%@gmail.com';",
+  setupSql: SETUP_CLIENTES,
       tablaResultado: {
         columnas: ['nombre', 'email'],
         filas: [

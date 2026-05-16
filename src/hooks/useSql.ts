@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useRef } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import wasmBase64 from 'virtual:sql-wasm-base64'
 import type { QueryResult } from '../types'
 
@@ -15,40 +15,51 @@ interface SqlEngine {
   executeQuery: (sql: string, setupSql?: string) => QueryResult
 }
 
+let singletonReady = false
+let singletonError: string | null = null
+let singletonSQL: any = null
+let initPromise: Promise<void> | null = null
+
+async function ensureInit(): Promise<void> {
+  if (initPromise) return initPromise
+  initPromise = (async () => {
+    try {
+      const initSqlJs = (await import('sql.js')).default
+      const wasmBinary = base64ToBuffer(wasmBase64)
+      singletonSQL = await initSqlJs({ wasmBinary })
+      singletonReady = true
+    } catch (e) {
+      singletonError = e instanceof Error
+        ? e.message
+        : 'Error desconocido cargando SQLite'
+    }
+  })()
+  return initPromise
+}
+
 export function useSql(): SqlEngine {
-  const [ready, setReady] = useState(false)
-  const [error, setError] = useState<string | null>(null)
-  const SQLRef = useRef<any>(null)
+  const [ready, setReady] = useState(singletonReady)
+  const [error, setError] = useState<string | null>(singletonError)
 
   useEffect(() => {
-    let cancelled = false
-    async function init() {
-      try {
-        const initSqlJs = (await import('sql.js')).default
-        // WASM incrustado en el bundle como base64 — sin peticiones de red
-        const wasmBinary = base64ToBuffer(wasmBase64)
-        const SQL = await initSqlJs({ wasmBinary })
-        if (!cancelled) {
-          SQLRef.current = SQL
-          setReady(true)
-        }
-      } catch (e) {
-        if (!cancelled) {
-          setError(e instanceof Error ? e.message : 'Error cargando SQLite')
-        }
-      }
+    if (singletonReady || singletonError) {
+      setReady(singletonReady)
+      setError(singletonError)
+      return
     }
-    init()
-    return () => { cancelled = true }
+    ensureInit().then(() => {
+      setReady(singletonReady)
+      setError(singletonError)
+    })
   }, [])
 
   const executeQuery = useCallback((sql: string, setupSql?: string): QueryResult => {
-    if (!SQLRef.current) {
+    if (!singletonSQL) {
       return { columnas: [], filas: [], error: 'Motor SQL no inicializado aún.' }
     }
     let db: any = null
     try {
-      db = new SQLRef.current.Database()
+      db = new singletonSQL.Database()
       if (setupSql) db.run(setupSql)
 
       const trimmed = sql.trim()

@@ -1,4 +1,5 @@
 import type { Leccion } from '../../../../types';
+import { SETUP_PRODUCTOS } from '../../ejemploSetups';
 
 export const leccion: Leccion = {
   id: 'mn-03-02',
@@ -21,6 +22,7 @@ export const leccion: Leccion = {
       titulo: 'Los 3 productos más caros',
       descripcion: 'Queremos ver solo los 3 productos con mayor precio.',
       sql: 'SELECT nombre, precio FROM productos ORDER BY precio DESC LIMIT 3;',
+  setupSql: SETUP_PRODUCTOS,
       tablaResultado: {
         columnas: ['nombre', 'precio'],
         filas: [
