@@ -39,7 +39,6 @@ export const leccion: Leccion = {
         columnas: ['nombre', 'email'],
         filas: [
           ['Ana García', 'ana@gmail.com'],
-          ['Alberto Ruiz', 'alberto@hotmail.com'],
         ],
       },
     },
@@ -54,7 +53,7 @@ export const leccion: Leccion = {
         filas: [
           ['Ana García', 'ana@gmail.com'],
           ['Carlos Ruiz', 'carlos@gmail.com'],
-          ['Diana Lee', 'diana@gmail.com'],
+          ['Eva Müller', 'eva@gmail.com'],
         ],
       },
     },
@@ -85,12 +84,12 @@ export const leccion: Leccion = {
       descripcion: 'Muestra nombre y precio de todos los productos cuyo nombre contenga la palabra "Pro".',
       setupSql: `
         CREATE TABLE productos (id INTEGER, nombre TEXT, precio REAL);
-        INSERT INTO productos VALUES (1,'Laptop Pro 15','1299.99');
-        INSERT INTO productos VALUES (2,'Mouse Inalámbrico','29.99');
-        INSERT INTO productos VALUES (3,'Teclado Mecánico','89.99');
-        INSERT INTO productos VALUES (4,'Monitor Pro 27','599.99');
-        INSERT INTO productos VALUES (5,'Webcam Pro HD','149.99');
-        INSERT INTO productos VALUES (6,'Auriculares Básicos','49.99');
+        INSERT INTO productos VALUES (1,'Laptop Pro 15',1299.99);
+        INSERT INTO productos VALUES (2,'Mouse Inalámbrico',29.99);
+        INSERT INTO productos VALUES (3,'Teclado Mecánico',89.99);
+        INSERT INTO productos VALUES (4,'Monitor Pro 27',599.99);
+        INSERT INTO productos VALUES (5,'Webcam Pro HD',149.99);
+        INSERT INTO productos VALUES (6,'Auriculares Básicos',49.99);
       `,
       resultadoEsperado: {
         columnas: ['nombre', 'precio'],

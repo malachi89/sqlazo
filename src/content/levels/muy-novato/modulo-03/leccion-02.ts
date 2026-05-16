@@ -26,9 +26,9 @@ export const leccion: Leccion = {
       tablaResultado: {
         columnas: ['nombre', 'precio'],
         filas: [
-          ['Laptop Pro', 1299.99],
-          ['Monitor 4K', 499.99],
-          ['Tablet Pro', 399.99],
+          ['Laptop Pro 15', 1299.99],
+          ['Monitor 27 4K', 499.99],
+          ['Silla Ergonómica', 349.99],
         ],
       },
     },

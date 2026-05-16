@@ -28,9 +28,12 @@ export const leccion: Leccion = {
         filas: [
           ['María', 'Ventas'],
           ['Carlos', 'Tecnología'],
-          ['Ana', 'RRHH'],
-          ['Pedro', 'Ventas'],
+          ['Ana', 'Ventas'],
+          ['Pedro', 'RRHH'],
           ['Laura', 'Tecnología'],
+          ['Miguel', 'Ventas'],
+          ['Javier', 'RRHH'],
+          ['Andrés', 'Tecnología'],
         ],
       },
     },
@@ -53,9 +56,9 @@ export const leccion: Leccion = {
       tablaResultado: {
         columnas: ['nombre', 'precio'],
         filas: [
+          ['Webcam HD', 79.99],
           ['Teclado Mecánico', 89.99],
-          ['Webcam HD', 129.99],
-          ['Webcam Pro', 149.99],
+          ['Auriculares Bluetooth', 149.99],
         ],
       },
     },

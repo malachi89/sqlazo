@@ -34,8 +34,9 @@ export const leccion: Leccion = {
       tablaResultado: {
         columnas: ['nombre', 'email', 'telefono'],
         filas: [
-          ['Ana Martínez', 'ana@empresa.com', null],
-          ['Pedro Sánchez', 'pedro@empresa.com', null],
+          ['María González', 'maria@email.com', null],
+          ['Pedro Sánchez', 'pedro@email.com', null],
+          ['Javier García', 'javier@email.com', null],
         ],
       },
     },
@@ -48,9 +49,11 @@ export const leccion: Leccion = {
       tablaResultado: {
         columnas: ['nombre', 'telefono'],
         filas: [
-          ['María González', '555-1234'],
-          ['Carlos López', '555-5678'],
-          ['Laura Torres', '555-9012'],
+          ['Carlos López', '555-0102'],
+          ['Ana Martínez', '555-0103'],
+          ['Laura Torres', '555-0105'],
+          ['Miguel Ramos', '555-0106'],
+          ['Sofía Ruiz', '555-0107'],
         ],
       },
     },

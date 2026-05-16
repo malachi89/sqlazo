@@ -28,7 +28,7 @@ export const leccion: Leccion = {
       filas: [
         [1, 'María', 'González', 'Ventas', 45000],
         [2, 'Carlos', 'López', 'Tecnología', 65000],
-        [3, 'Ana', 'Martínez', 'Recursos Humanos', 48000],
+        [3, 'Ana', 'Martínez', 'RRHH', 48000],
         [4, 'Pedro', 'Sánchez', 'Ventas', 42000],
         [5, 'Laura', 'Torres', 'Tecnología', 70000],
       ],

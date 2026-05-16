@@ -20,7 +20,7 @@ export const leccion: Leccion = {
     {
       tipo: 'explicacion',
       titulo: 'Sintaxis de INNER JOIN',
-      texto: 'INNER JOIN conecta dos tablas a través de una columna en común:\n\nSELECT t1.col, t2.col\nFROM tabla1 t1\nINNER JOIN tabla2 t2 ON t1.columna = t2.columna\n\nDonde:\n• t1, t2 son alias de tabla (opcionales pero recomendados)\n• ON especifica la condición de unión\n• La condición suele ser clave primaria = clave foránea',
+      texto: 'INNER JOIN conecta dos tablas a través de una columna en común:\n\nSELECT c.nombre, p.total\nFROM clientes c\nINNER JOIN pedidos p ON c.id = p.cliente_id\n\nDonde:\n• c y p son alias de tabla (opcionales pero recomendados)\n• ON especifica la condición de unión\n• La condición suele ser clave primaria = clave foránea',
     },
     {
       tipo: 'tabla-visual',
@@ -59,7 +59,7 @@ export const leccion: Leccion = {
         'La condición ON especifica cómo se relacionan las tablas',
         'Normalmente se une por clave primaria = clave foránea',
         'Solo devuelve filas con "pareja" en ambas tablas',
-        'Los alias de tabla (t1, t2) evitan ambigüedad cuando hay columnas con el mismo nombre',
+        'Los alias de tabla (c, p) evitan ambigüedad cuando hay columnas con el mismo nombre',
       ],
     },
   ],

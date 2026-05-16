@@ -34,7 +34,10 @@ export const leccion: Leccion = {
   setupSql: SETUP_EMPLEADOS_BASICO,
       tablaResultado: {
         columnas: ['departamento', 'cantidad'],
-        filas: [['Tecnología', 3]],
+        filas: [
+          ['Ventas', 3],
+          ['Tecnología', 3],
+        ],
       },
     },
     {
@@ -45,7 +48,10 @@ export const leccion: Leccion = {
   setupSql: SETUP_PRODUCTOS,
       tablaResultado: {
         columnas: ['categoria', 'precio_prom'],
-        filas: [['Electrónica', 733.32]],
+        filas: [
+          ['Electrónica', 899.99],
+          ['Mobiliario', 349.99],
+        ],
       },
     },
     {
