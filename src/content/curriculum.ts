@@ -176,7 +176,7 @@ export const curriculum: NivelCurso[] = [
   {
     id: 'avanzado',
     titulo: 'Avanzado',
-    descripcion: 'Window Functions, índices, optimización, transacciones ACID, triggers, modelado y seguridad.',
+    descripcion: 'Window Functions en profundidad, subconsultas avanzadas con EXISTS, análisis de datos real: rankings, cohortes, acumulados y CTEs recursivos.',
     colorClase: 'text-red-600 dark:text-red-400',
     bgClase: 'bg-red-500',
     borderClase: 'border-red-500',

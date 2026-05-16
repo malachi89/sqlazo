@@ -38,6 +38,19 @@ El contenido está completamente hardcodeado en TypeScript:
 
 Para agregar una lección: crear el archivo en la carpeta correspondiente siguiendo la estructura `Leccion`, luego importarla y agregarla al módulo en `curriculum.ts`.
 
+#### Estado actual del banco de ejercicios
+
+| Nivel | Ejercicios únicos | IDs | Setup de datos |
+|-------|-------------------|-----|----------------|
+| Muy Novato | ~100 | `mn-b-*` | tabla única por ejercicio |
+| Novato | 45 | `no-b-001` – `no-b-045` | departamentos, empleados, productos, categorias, pedidos, clientes |
+| Intermedio | 50 | `in-b-001` – `in-b-050` | empleados, productos, ventas |
+| Avanzado | 30 | `av-b-001` – `av-b-030` | empleados, ventas_mensuales |
+
+Cada ejercicio incluye: `setupSql` autocontenido, `resultadoEsperado` con columnas y filas exactas, `solucionOficial`, `solucionesAlternativas`, `pistas` (3 progresivas), `explicacion` y `retroalimentacionError`.
+
+El perfil del curso es **analista de datos**, no DBA: el foco es `SELECT` y análisis. Los módulos de Avanzado cubren Window Functions, subconsultas avanzadas y análisis de datos; no triggers, índices ni seguridad.
+
 ### Tipos de secciones de lección (`SeccionContenido`)
 
 Cada lección tiene un array `contenido: SeccionContenido[]` que se renderiza slide a slide en `LessonContent`. Los tipos disponibles: `introduccion`, `explicacion`, `analogia`, `ejemplo` (con editor SQL interactivo), `nota`, `advertencia`, `resumen`, `error-comun`, `tabla-visual`, `codigo`, `separador`.

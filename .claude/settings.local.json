@@ -17,7 +17,12 @@
       "Bash(git commit -m ' *)",
       "Bash(git push *)",
       "PowerShell(python --version 2>&1; node --version 2>&1)",
-      "Bash(npx tsc *)"
+      "Bash(npx tsc *)",
+      "Bash(node -e \"const f = require\\('fs'\\).readFileSync\\('src/content/exercises/novato.ts','utf8'\\); const matches = f.match\\(/id: 'no-b-\\\\d+'/g\\); console.log\\('Ejercicios:', matches?.length\\); console.log\\(matches?.join\\('\\\\n'\\)\\);\")",
+      "Bash(curl -s http://localhost:5173)",
+      "Bash(node -e \"const f=require\\('fs'\\).readFileSync\\('src/content/exercises/intermedio.ts','utf8'\\);const m=f.match\\(/id: 'in-b-\\\\d+'/g\\);console.log\\('Ejercicios intermedio:',m?.length\\);\")",
+      "Bash(node -e ' *)",
+      "Bash(curl *)"
     ]
   }
 }
