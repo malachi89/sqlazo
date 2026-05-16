@@ -208,12 +208,3 @@ export const curriculum: NivelCurso[] = [
   },
 ];
 
-export const todosBancoEjercicios = async () => {
-  const [mn, no, int, av] = await Promise.all([
-    import('./exercises/muy-novato').then(m => m.ejerciciosMuyNovato),
-    import('./exercises/novato').then(m => m.ejerciciosNovato),
-    import('./exercises/intermedio').then(m => m.ejerciciosIntermedio),
-    import('./exercises/avanzado').then(m => m.ejerciciosAvanzado),
-  ]);
-  return [...mn, ...no, ...int, ...av];
-};

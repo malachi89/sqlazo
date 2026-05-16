@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import { viteSingleFile } from 'vite-plugin-singlefile'
 import fs from 'fs'
 import path from 'path'
 
@@ -24,7 +25,19 @@ function inlineSqlWasm() {
 
 export default defineConfig({
   base: './',
-  plugins: [react(), inlineSqlWasm()],
+  plugins: [
+    react(),
+    inlineSqlWasm(),
+    viteSingleFile(),
+  ],
+  build: {
+    target: 'esnext',
+    rollupOptions: {
+      output: {
+        inlineDynamicImports: true,
+      },
+    },
+  },
   optimizeDeps: {
     exclude: ['sql.js'],
   },
