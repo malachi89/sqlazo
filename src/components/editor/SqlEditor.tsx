@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useCallback } from 'react';
+import React, { useEffect, useRef, useCallback, useLayoutEffect } from 'react';
 import { EditorView, keymap, lineNumbers, highlightActiveLine } from '@codemirror/view';
 import { EditorState } from '@codemirror/state';
 import { sql, SQLite } from '@codemirror/lang-sql';
@@ -35,6 +35,9 @@ export function SqlEditor({
     if (q) onEjecutar(q);
   }, [getQuery, onEjecutar]);
 
+  const handleEjecutarRef = useRef(handleEjecutar);
+  useLayoutEffect(() => { handleEjecutarRef.current = handleEjecutar; });
+
   const handleLimpiar = useCallback(() => {
     if (viewRef.current && !soloLectura) {
       viewRef.current.dispatch({
@@ -49,11 +52,11 @@ export function SqlEditor({
     const ejecutarKeymap = keymap.of([
       {
         key: 'Ctrl-Enter',
-        run: () => { handleEjecutar(); return true; },
+        run: () => { handleEjecutarRef.current(); return true; },
       },
       {
         key: 'Mod-Enter',
-        run: () => { handleEjecutar(); return true; },
+        run: () => { handleEjecutarRef.current(); return true; },
       },
     ]);
 

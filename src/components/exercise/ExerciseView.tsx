@@ -65,20 +65,13 @@ export function ExerciseView({ ejercicio }: ExerciseViewProps) {
           </div>
           <h2 className="text-lg font-bold text-gray-900 dark:text-white">{ejercicio.titulo}</h2>
           <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">{ejercicio.descripcion}</p>
+          <div className="flex items-center gap-2 mt-3 pt-3 border-t border-gray-100 dark:border-gray-800">
+            <Target size={13} className="text-blue-500 flex-shrink-0" />
+            <span className="text-xs font-semibold text-blue-600 dark:text-blue-400 uppercase tracking-wider">Objetivo:</span>
+            <span className="text-xs text-gray-600 dark:text-gray-400">{ejercicio.objetivo}</span>
+          </div>
         </div>
       </div>
-
-      {/* Objetivo */}
-      <div className="flex items-start gap-3 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-xl border border-blue-200 dark:border-blue-800">
-        <Target size={18} className="text-blue-500 flex-shrink-0 mt-0.5" />
-        <div>
-          <p className="text-xs font-semibold text-blue-700 dark:text-blue-300 uppercase tracking-wider mb-1">Objetivo</p>
-          <p className="text-sm text-blue-800 dark:text-blue-200">{ejercicio.objetivo}</p>
-        </div>
-      </div>
-
-      {/* Schema */}
-      <SchemaExplorer esquema={esquema} />
 
       {/* Editor */}
       <SqlEditor valorInicial="" onEjecutar={handleEjecutar} altura="140px" />

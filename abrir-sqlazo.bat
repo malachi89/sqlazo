@@ -1,3 +1,5 @@
 @echo off
-title SQLazo
-powershell -ExecutionPolicy Bypass -File "%~dp0abrir-sqlazo.ps1"
+title SQLazo - Servidor de desarrollo
+cd /d "%~dp0"
+npm run dev
+pause

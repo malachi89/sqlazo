@@ -22,12 +22,16 @@ export const leccion: Leccion = {
       titulo: 'Categorizar salarios',
       descripcion: 'Clasificamos cada empleado en "Junior", "Senior" o "Director" según su salario.',
       sql: "SELECT nombre, salario,\n  CASE\n    WHEN salario < 45000 THEN 'Junior'\n    WHEN salario < 65000 THEN 'Senior'\n    ELSE 'Director'\n  END AS nivel\nFROM empleados ORDER BY salario;",
+      setupSql: SETUP_EMPLEADOS_BASICO,
       tablaResultado: {
         columnas: ['nombre', 'salario', 'nivel'],
         filas: [
+          ['Javier', 38000, 'Junior'],
           ['Pedro', 42000, 'Junior'],
           ['María', 45000, 'Senior'],
           ['Ana', 48000, 'Senior'],
+          ['Sofía', 52000, 'Senior'],
+          ['Elena', 55000, 'Senior'],
           ['Miguel', 60000, 'Senior'],
           ['Carlos', 65000, 'Director'],
           ['Laura', 70000, 'Director'],

@@ -75,44 +75,7 @@ export const leccion: Leccion = {
       ],
     },
   ],
-  ejercicios: [
-    {
-      id: 'mn-01-03-e1',
-      titulo: 'Explora la tabla empleados',
-      descripcion: 'La tabla "empleados" tiene 5 empleados precargados. Ejecuta la consulta para ver todos sus datos.',
-      setupSql: `
-        CREATE TABLE empleados (
-          id INTEGER PRIMARY KEY,
-          nombre TEXT,
-          apellido TEXT,
-          departamento TEXT,
-          salario REAL
-        );
-        INSERT INTO empleados VALUES (1,'María','González','Ventas',45000);
-        INSERT INTO empleados VALUES (2,'Carlos','López','Tecnología',65000);
-        INSERT INTO empleados VALUES (3,'Ana','Martínez','RRHH',48000);
-        INSERT INTO empleados VALUES (4,'Pedro','Sánchez','Ventas',42000);
-        INSERT INTO empleados VALUES (5,'Laura','Torres','Tecnología',70000);
-      `,
-      resultadoEsperado: {
-        columnas: ['id', 'nombre', 'apellido', 'departamento', 'salario'],
-        filas: [
-          [1, 'María', 'González', 'Ventas', 45000],
-          [2, 'Carlos', 'López', 'Tecnología', 65000],
-          [3, 'Ana', 'Martínez', 'RRHH', 48000],
-          [4, 'Pedro', 'Sánchez', 'Ventas', 42000],
-          [5, 'Laura', 'Torres', 'Tecnología', 70000],
-        ],
-      },
-      solucionOficial: 'SELECT * FROM empleados;',
-      pistas: [
-        'Usa SELECT seguido de * para seleccionar todas las columnas',
-        'Usa FROM seguido del nombre de la tabla',
-        'La consulta completa es: SELECT * FROM empleados',
-      ],
-      explicacion: 'SELECT * FROM empleados selecciona TODAS las columnas (*) de la tabla empleados. El asterisco (*) es un atajo para decir "todas las columnas".',
-    },
-  ],
+  ejercicios: [],
   cuestionario: [
     {
       id: 'q1',
