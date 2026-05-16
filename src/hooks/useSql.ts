@@ -7,6 +7,34 @@ interface SqlEngine {
   executeQuery: (sql: string, setupSql?: string) => QueryResult;
 }
 
+function loadWasmBinary(): Promise<ArrayBuffer> {
+  const wasmPath = './sql-wasm.wasm';
+
+  // fetch works on http/https; fails on file:// due to CORS
+  // XHR works on both — status 0 means success on file://
+  return fetch(wasmPath)
+    .then(r => {
+      if (!r.ok) throw new Error(`HTTP ${r.status}`);
+      return r.arrayBuffer();
+    })
+    .catch(() =>
+      new Promise<ArrayBuffer>((resolve, reject) => {
+        const xhr = new XMLHttpRequest();
+        xhr.open('GET', wasmPath, true);
+        xhr.responseType = 'arraybuffer';
+        xhr.onload = () => {
+          if (xhr.status === 200 || xhr.status === 0) {
+            resolve(xhr.response as ArrayBuffer);
+          } else {
+            reject(new Error(`XHR ${xhr.status}`));
+          }
+        };
+        xhr.onerror = () => reject(new Error('XHR network error'));
+        xhr.send();
+      })
+    );
+}
+
 export function useSql(): SqlEngine {
   const [ready, setReady] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -17,7 +45,8 @@ export function useSql(): SqlEngine {
     async function init() {
       try {
         const initSqlJs = (await import('sql.js')).default;
-        const SQL = await initSqlJs({ locateFile: () => '/sql-wasm.wasm' });
+        const wasmBinary = await loadWasmBinary();
+        const SQL = await initSqlJs({ wasmBinary });
         if (!cancelled) {
           SQLRef.current = SQL;
           setReady(true);
@@ -39,16 +68,20 @@ export function useSql(): SqlEngine {
     let db: any = null;
     try {
       db = new SQLRef.current.Database();
-      if (setupSql) {
-        db.run(setupSql);
-      }
+      if (setupSql) db.run(setupSql);
+
       const trimmed = sql.trim();
       if (!trimmed) {
         return { columnas: [], filas: [], error: 'Escribe una consulta SQL primero.' };
       }
 
-      const upperSql = trimmed.toUpperCase();
-      const isDML = upperSql.startsWith('INSERT') || upperSql.startsWith('UPDATE') || upperSql.startsWith('DELETE') || upperSql.startsWith('CREATE') || upperSql.startsWith('DROP') || upperSql.startsWith('ALTER');
+      const upper = trimmed.toUpperCase();
+      const isDML =
+        upper.startsWith('INSERT') || upper.startsWith('UPDATE') ||
+        upper.startsWith('DELETE') || upper.startsWith('CREATE') ||
+        upper.startsWith('DROP')   || upper.startsWith('ALTER')  ||
+        upper.startsWith('BEGIN')  || upper.startsWith('COMMIT') ||
+        upper.startsWith('ROLLBACK');
 
       if (isDML) {
         db.run(trimmed);
@@ -58,9 +91,7 @@ export function useSql(): SqlEngine {
       const stmt = db.prepare(trimmed);
       const columnas: string[] = stmt.getColumnNames();
       const filas: (string | number | null)[][] = [];
-      while (stmt.step()) {
-        filas.push(stmt.get());
-      }
+      while (stmt.step()) filas.push(stmt.get());
       stmt.free();
       return { columnas, filas };
     } catch (e) {
