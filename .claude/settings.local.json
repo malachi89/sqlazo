@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(Get-ChildItem -Path \"C:\\\\Users\\\\malch\\\\Documents\\\\sqlazo\" -Force)",
+      "Bash(Select-Object Name, Mode)",
+      "PowerShell(ls -Force \"C:\\\\Users\\\\malch\\\\Documents\\\\sqlazo\" 2>&1 | ForEach-Object { $_.FullName })",
+      "WebSearch",
+      "WebFetch(domain:dev.to)",
+      "WebFetch(domain:blog.seancoughlin.me)",
+      "WebFetch(domain:github.com)",
+      "Bash(npm create *)",
+      "Bash(npm install *)",
+      "Bash(npm run *)",
+      "Bash(git init *)",
+      "Bash(git remote *)",
+      "Bash(git add *)"
+    ]
+  }
+}
