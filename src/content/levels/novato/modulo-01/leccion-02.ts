@@ -90,5 +90,29 @@ export const leccion: Leccion = {
       correcta: 1,
       explicacion: 'AVG ignora los NULLs. Calcula (1000 + 2000 + 3000) / 3 = 2000. No divide entre 5 porque los NULLs no cuentan.',
     },
+    {
+      id: 'q2',
+      pregunta: '¿Qué devuelve SUM(salario) si todos los salarios son NULL?',
+      opciones: [
+        '0',
+        'NULL',
+        'Error',
+        'La cantidad de filas',
+      ],
+      correcta: 1,
+      explicacion: 'SUM de todos NULL devuelve NULL, no 0. Esto es importante porque NULL significa "desconocido", no "cero".',
+    },
+    {
+      id: 'q3',
+      pregunta: '¿Puedes usar MIN y MAX con columnas de texto?',
+      opciones: [
+        'No, solo con números',
+        'Sí, devuelve el primer y último valor alfabéticamente',
+        'Solo MAX funciona con texto',
+        'Devuelve la longitud del texto',
+      ],
+      correcta: 1,
+      explicacion: 'MIN y MAX funcionan con texto también. MIN devuelve el valor que va primero alfabéticamente y MAX el que va último.',
+    },
   ],
 };

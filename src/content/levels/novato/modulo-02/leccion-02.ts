@@ -110,5 +110,29 @@ export const leccion: Leccion = {
       correcta: 1,
       explicacion: 'INNER JOIN solo devuelve filas con coincidencia en ambas tablas. LEFT JOIN devuelve TODAS las filas de la tabla izquierda, poniendo NULL donde no hay coincidencia en la derecha.',
     },
+    {
+      id: 'q2',
+      pregunta: 'Si tienes 10 clientes y 5 pedidos, y 3 clientes no tienen pedidos, ¿cuántas filas devuelve LEFT JOIN clientes LEFT JOIN pedidos?',
+      opciones: [
+        '5 (solo los que tienen pedidos)',
+        '10 (todos los clientes, con NULL para los sin pedidos)',
+        '15 (todos combinados)',
+        '7 (los 7 que tienen alguna relación)',
+      ],
+      correcta: 1,
+      explicacion: 'LEFT JOIN devuelve TODOS los clientes (10). Los 7 con pedidos muestran los datos del pedido. Los 3 sin pedidos muestran NULL en las columnas de pedidos.',
+    },
+    {
+      id: 'q3',
+      pregunta: '¿Cómo encuentras los clientes que NUNCA han hecho un pedido?',
+      opciones: [
+        'INNER JOIN clientes con pedidos',
+        'LEFT JOIN + WHERE pedido.id IS NULL',
+        'RIGHT JOIN clientes con pedidos',
+        'SELECT DISTINCT cliente FROM pedidos',
+      ],
+      correcta: 1,
+      explicacion: 'LEFT JOIN incluye todos los clientes. WHERE pedido.id IS NULL filtra solo aquellos donde no hubo coincidencia en la tabla de pedidos. Esta es una técnica muy útil y común.',
+    },
   ],
 };

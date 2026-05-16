@@ -170,4 +170,3 @@ export const leccion: Leccion = {
     },
   ],
 };
-const _tsTest: number = 'should fail';

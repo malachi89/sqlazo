@@ -24,7 +24,11 @@ import { leccion as no0104 } from './levels/novato/modulo-01/leccion-04';
 import { leccion as no0105 } from './levels/novato/modulo-01/leccion-05';
 import { leccion as no0201 } from './levels/novato/modulo-02/leccion-01';
 import { leccion as no0202 } from './levels/novato/modulo-02/leccion-02';
+import { leccion as no0203 } from './levels/novato/modulo-02/leccion-03';
+import { leccion as no0204 } from './levels/novato/modulo-02/leccion-04';
 import { leccion as no0301 } from './levels/novato/modulo-03/leccion-01';
+import { leccion as no0302 } from './levels/novato/modulo-03/leccion-02';
+import { leccion as no0401 } from './levels/novato/modulo-04/leccion-01';
 
 // ── Intermedio ───────────────────────────────────────────────────────
 import { leccion as in0101 } from './levels/intermedio/modulo-01/leccion-01';
@@ -49,9 +53,13 @@ import { leccion as av0201 } from './levels/avanzado/modulo-02/leccion-01';
 import { leccion as av0202 } from './levels/avanzado/modulo-02/leccion-02';
 import { leccion as av0203 } from './levels/avanzado/modulo-02/leccion-03';
 import { leccion as av0301 } from './levels/avanzado/modulo-03/leccion-01';
+import { leccion as av0302 } from './levels/avanzado/modulo-03/leccion-02';
 import { leccion as av0401 } from './levels/avanzado/modulo-04/leccion-01';
+import { leccion as av0402 } from './levels/avanzado/modulo-04/leccion-02';
 import { leccion as av0501 } from './levels/avanzado/modulo-05/leccion-01';
+import { leccion as av0502 } from './levels/avanzado/modulo-05/leccion-02';
 import { leccion as av0601 } from './levels/avanzado/modulo-06/leccion-01';
+import { leccion as av0602 } from './levels/avanzado/modulo-06/leccion-02';
 
 export const curriculum: NivelCurso[] = [
   {
@@ -92,7 +100,7 @@ export const curriculum: NivelCurso[] = [
   {
     id: 'novato',
     titulo: 'Novato',
-    descripcion: 'Domina las funciones de agregación, GROUP BY, HAVING, DISTINCT y los JOINs básicos.',
+    descripcion: 'Domina las funciones de agregación, GROUP BY, HAVING, DISTINCT, JOINs avanzados y subconsultas básicas.',
     colorClase: 'text-green-600 dark:text-green-400',
     bgClase: 'bg-green-500',
     borderClase: 'border-green-500',
@@ -107,14 +115,20 @@ export const curriculum: NivelCurso[] = [
       {
         id: 'modulo-02',
         titulo: 'Uniendo tablas',
-        descripcion: 'INNER JOIN y LEFT JOIN para combinar datos de múltiples tablas.',
-        lecciones: [no0201, no0202],
+        descripcion: 'INNER JOIN, LEFT JOIN, múltiples JOINs y Self JOIN para combinar datos de múltiples tablas.',
+        lecciones: [no0201, no0202, no0203, no0204],
       },
       {
         id: 'modulo-03',
         titulo: 'Relaciones entre tablas',
-        descripcion: 'Claves primarias, foráneas y tipos de relaciones.',
-        lecciones: [no0301],
+        descripcion: 'Claves primarias, foráneas y WHERE + GROUP BY combinados.',
+        lecciones: [no0301, no0302],
+      },
+      {
+        id: 'modulo-04',
+        titulo: 'Subconsultas básicas',
+        descripcion: 'Introducción a consultas dentro de consultas: subconsultas escalares y con IN.',
+        lecciones: [no0401],
       },
     ],
   },
@@ -162,7 +176,7 @@ export const curriculum: NivelCurso[] = [
   {
     id: 'avanzado',
     titulo: 'Avanzado',
-    descripcion: 'Window Functions, índices, optimización, transacciones ACID, triggers y seguridad.',
+    descripcion: 'Window Functions, índices, optimización, transacciones ACID, triggers, modelado y seguridad.',
     colorClase: 'text-red-600 dark:text-red-400',
     bgClase: 'bg-red-500',
     borderClase: 'border-red-500',
@@ -183,26 +197,26 @@ export const curriculum: NivelCurso[] = [
       {
         id: 'modulo-03',
         titulo: 'Transacciones',
-        descripcion: 'BEGIN, COMMIT, ROLLBACK y propiedades ACID.',
-        lecciones: [av0301],
+        descripcion: 'BEGIN, COMMIT, ROLLBACK, SAVEPOINT y propiedades ACID.',
+        lecciones: [av0301, av0302],
       },
       {
         id: 'modulo-04',
         titulo: 'Triggers',
-        descripcion: 'Automatización con triggers y disparadores.',
-        lecciones: [av0401],
+        descripcion: 'Automatización con triggers: AFTER, BEFORE, validaciones y RAISE.',
+        lecciones: [av0401, av0402],
       },
       {
         id: 'modulo-05',
         titulo: 'Modelado avanzado',
-        descripcion: 'Modelado Entidad-Relación y diseño profesional.',
-        lecciones: [av0501],
+        descripcion: 'Modelado Entidad-Relación y normalización práctica (1FN, 2FN, 3FN).',
+        lecciones: [av0501, av0502],
       },
       {
         id: 'modulo-06',
         titulo: 'Seguridad',
-        descripcion: 'SQL Injection y cómo prevenirlo.',
-        lecciones: [av0601],
+        descripcion: 'SQL Injection, permisos, backups, cifrado y buenas prácticas.',
+        lecciones: [av0601, av0602],
       },
     ],
   },

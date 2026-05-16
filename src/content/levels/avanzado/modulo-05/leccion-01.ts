@@ -46,5 +46,29 @@ export const leccion: Leccion = {
       correcta: 1,
       explicacion: 'Las relaciones N:M se implementan con una tabla intermedia (también llamada tabla de unión o tabla pivote). Esta tabla contiene las claves foráneas de ambas entidades relacionadas.',
     },
+    {
+      id: 'q2',
+      pregunta: '¿En qué dirección va la clave foránea en una relación 1:N?',
+      opciones: [
+        'En la tabla del lado "1"',
+        'En la tabla del lado "N" (muchos)',
+        'En ambas tablas',
+        'En una tabla separada',
+      ],
+      correcta: 1,
+      explicacion: 'En una relación 1:N (un cliente tiene muchos pedidos), la clave foránea va en la tabla del lado "N" (pedidos). Cada pedido apunta a un cliente, pero un cliente puede tener muchos pedidos.',
+    },
+    {
+      id: 'q3',
+      pregunta: '¿Por qué no se recomienda almacenar la edad de una persona en la base de datos?',
+      opciones: [
+        'Porque ocupa mucho espacio',
+        'Porque es un dato calculable (se puede derivar de la fecha de nacimiento) y cambia con el tiempo',
+        'Porque no es un dato importante',
+        'Porque las bases de datos no soportan números de edad',
+      ],
+      correcta: 1,
+      explicacion: 'La edad es un dato derivado que cambia automáticamente con el tiempo. Es mejor almacenar la fecha de nacimiento y calcular la edad cuando sea necesario. Esto evita datos inconsistentes.',
+    },
   ],
 };

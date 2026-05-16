@@ -53,5 +53,29 @@ export const leccion: Leccion = {
       correcta: 1,
       explicacion: 'Un AFTER UPDATE trigger se ejecuta DESPUÉS de que el UPDATE se ha aplicado exitosamente. BEFORE ejecutaría antes, permitiendo validar o modificar los datos antes de guardarlos.',
     },
+    {
+      id: 'q2',
+      pregunta: '¿Qué representa NEW.columna en un trigger?',
+      opciones: [
+        'El valor anterior de la columna',
+        'El nuevo valor que se está insertando o actualizando',
+        'El nombre de la columna',
+        'El tipo de dato de la columna',
+      ],
+      correcta: 1,
+      explicacion: 'NEW.columna accede al nuevo valor que se está insertando (INSERT) o al valor actualizado (UPDATE). OLD.columna accede al valor anterior en UPDATE y DELETE.',
+    },
+    {
+      id: 'q3',
+      pregunta: '¿Cómo eliminas un trigger existente?',
+      opciones: [
+        'DELETE TRIGGER nombre',
+        'DROP TRIGGER nombre',
+        'REMOVE TRIGGER nombre',
+        'ALTER TRIGGER nombre DISABLE',
+      ],
+      correcta: 1,
+      explicacion: 'Se usa DROP TRIGGER nombre_trigger para eliminar un trigger. Es similar a DROP TABLE o DROP VIEW.',
+    },
   ],
 };

@@ -57,5 +57,29 @@ export const leccion: Leccion = {
       correcta: 1,
       explicacion: 'ROLLBACK deshace TODAS las operaciones realizadas desde el BEGIN TRANSACTION. Es la propiedad de Atomicidad: todo o nada.',
     },
+    {
+      id: 'q2',
+      pregunta: '¿Qué propiedad ACID garantiza que una transacción se ejecute completamente o no se ejecute en absoluto?',
+      opciones: [
+        'Consistencia',
+        'Isolación',
+        'Atomicidad',
+        'Durabilidad',
+      ],
+      correcta: 2,
+      explicacion: 'La Atomicidad garantiza que todas las operaciones de una transacción se completen exitosamente o ninguna se aplique. Es el principio de "todo o nada".',
+    },
+    {
+      id: 'q3',
+      pregunta: '¿Qué pasa si no ejecutas COMMIT ni ROLLBACK después de un BEGIN?',
+      opciones: [
+        'Los cambios se confirman automáticamente',
+        'Los cambios se deshacen automáticamente al cerrar la conexión',
+        'Los cambios permanecen pendientes indefinidamente',
+        'Da un error',
+      ],
+      correcta: 2,
+      explicacion: 'Sin COMMIT ni ROLLBACK, los cambios quedan en estado pendiente. En SQLite, se confirman automáticamente al cerrar la conexión. En otros sistemas (PostgreSQL, MySQL), se deshacen al cerrar la conexión.',
+    },
   ],
 };

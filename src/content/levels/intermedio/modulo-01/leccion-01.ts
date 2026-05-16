@@ -117,5 +117,29 @@ export const leccion: Leccion = {
       correcta: 1,
       explicacion: 'Las subconsultas son útiles cuando necesitas comparar con valores agregados (AVG, MAX, etc.) o cuando expresan la lógica de forma más natural. Los JOINs son generalmente más eficientes para combinar tablas.',
     },
+    {
+      id: 'q2',
+      pregunta: '¿Qué es una subconsulta correlacionada?',
+      opciones: [
+        'Una subconsulta que devuelve más de una columna',
+        'Una subconsulta que referencia columnas de la consulta exterior y se ejecuta una vez por fila',
+        'Una subconsulta que usa JOIN internamente',
+        'Una subconsulta que está en la cláusula FROM',
+      ],
+      correcta: 1,
+      explicacion: 'Una subconsulta correlacionada referencia columnas de la consulta exterior. Esto significa que se ejecuta una vez por cada fila de la consulta exterior, lo que puede ser muy lento en tablas grandes.',
+    },
+    {
+      id: 'q3',
+      pregunta: '¿En qué cláusulas puedes colocar una subconsulta?',
+      opciones: [
+        'Solo en WHERE',
+        'Solo en WHERE y FROM',
+        'En WHERE, FROM, SELECT y HAVING',
+        'Solo en SELECT',
+      ],
+      correcta: 2,
+      explicacion: 'Las subconsultas pueden aparecer en múltiples cláusulas: WHERE (como valor de comparación), FROM (como tabla derivada), SELECT (como columna calculada), y HAVING (como valor de filtro de grupo).',
+    },
   ],
 };

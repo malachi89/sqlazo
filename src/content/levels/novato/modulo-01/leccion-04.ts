@@ -119,5 +119,29 @@ export const leccion: Leccion = {
       correcta: 1,
       explicacion: 'WHERE se ejecuta ANTES de GROUP BY, en la fase de filtrado de filas individuales. Las funciones de agregación como COUNT(*) no existen aún en esa fase. Por eso necesitas HAVING que se ejecuta DESPUÉS de GROUP BY.',
     },
+    {
+      id: 'q2',
+      pregunta: '¿Puedes usar WHERE y HAVING en la misma consulta?',
+      opciones: [
+        'No, debes elegir uno u otro',
+        'Sí, WHERE filtra filas y HAVING filtra grupos',
+        'Solo si usas el mismo tipo de condición',
+        'Solo en subconsultas',
+      ],
+      correcta: 1,
+      explicacion: 'Puedes y a menudo debes usar ambos. WHERE filtra filas individuales antes de agrupar, y HAVING filtra grupos después de agrupar. Por ejemplo: WHERE activo = 1 GROUP BY dept HAVING COUNT(*) > 5.',
+    },
+    {
+      id: 'q3',
+      pregunta: '¿Puedes usar un alias de columna definido en SELECT dentro de HAVING?',
+      opciones: [
+        'Sí, siempre',
+        'Depende del sistema de base de datos; en SQLite generalmente sí',
+        'No, nunca',
+        'Solo con COUNT',
+      ],
+      correcta: 1,
+      explicacion: 'En SQLite y muchos otros sistemas, puedes usar alias de SELECT en HAVING. Por ejemplo: SELECT COUNT(*) AS c FROM t GROUP BY x HAVING c > 5. Pero no todos los sistemas de BD lo permiten.',
+    },
   ],
 };

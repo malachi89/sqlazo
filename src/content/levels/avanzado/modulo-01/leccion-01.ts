@@ -106,5 +106,29 @@ export const leccion: Leccion = {
       correcta: 1,
       explicacion: 'GROUP BY colapsa los datos en una fila por grupo. OVER mantiene todas las filas originales y agrega el valor calculado como una columna adicional. Esto permite hacer comparaciones fila por fila.',
     },
+    {
+      id: 'q2',
+      pregunta: '¿Qué hace PARTITION BY dentro de OVER()?',
+      opciones: [
+        'Ordena los datos',
+        'Divide los datos en grupos para el cálculo, sin colapsar las filas',
+        'Filtra las filas que no cumplen la condición',
+        'Elimina duplicados',
+      ],
+      correcta: 1,
+      explicacion: 'PARTITION BY divide los datos en grupos (particiones) para el cálculo de la función de ventana. A diferencia de GROUP BY, no colapsa las filas: cada fila original permanece en el resultado.',
+    },
+    {
+      id: 'q3',
+      pregunta: '¿Cuándo usarías una Window Function en lugar de GROUP BY?',
+      opciones: [
+        'Cuando quieres un resumen total',
+        'Cuando necesitas ver cada fila individual junto con un valor calculado sobre su grupo',
+        'Cuando tienes menos de 100 filas',
+        'Nunca, GROUP BY siempre es preferible',
+      ],
+      correcta: 1,
+      explicacion: 'Usas Window Functions cuando necesitas cada fila original más un valor calculado (como "cada empleado con el promedio de su departamento"). GROUP BY solo te da el resumen, perdiendo los detalles individuales.',
+    },
   ],
 };

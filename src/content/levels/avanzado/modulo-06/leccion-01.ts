@@ -56,5 +56,29 @@ export const leccion: Leccion = {
       correcta: 1,
       explicacion: 'Los Prepared Statements (sentencias preparadas) separan completamente el código SQL de los datos del usuario. Los parámetros nunca se interpretan como código SQL, eliminando la vulnerabilidad.',
     },
+    {
+      id: 'q2',
+      pregunta: 'Si un usuario ingresa \' OR 1=1 -- en un campo de login, ¿qué intenta hacer?',
+      opciones: [
+        'Cerrar la sesión',
+        'Bypass de autenticación: la consulta siempre devuelve verdadero',
+        'Crear un nuevo usuario',
+        'Eliminar la base de datos',
+      ],
+      correcta: 1,
+      explicacion: '\' OR 1=1 -- inyecta una condición que siempre es verdadera (1=1). El -- comenta el resto de la consulta. Esto hace que la consulta devuelva todos los usuarios, permitiendo acceso sin credenciales válidas.',
+    },
+    {
+      id: 'q3',
+      pregunta: '¿Qué es un ORM y cómo ayuda con la seguridad?',
+      opciones: [
+        'Un tipo de base de datos más segura',
+        'Un Object-Relational Mapper que abstrae SQL y usa prepared statements automáticamente',
+        'Un firewall para bases de datos',
+        'Un sistema de cifrado',
+      ],
+      correcta: 1,
+      explicacion: 'Un ORM (como SQLAlchemy, Prisma, Entity Framework) mapea objetos del código a tablas de la base de datos. Internamente usa prepared statements, reduciendo el riesgo de SQL Injection sin que el programador tenga que pensar en ello.',
+    },
   ],
 };

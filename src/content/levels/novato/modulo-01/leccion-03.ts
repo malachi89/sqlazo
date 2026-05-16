@@ -114,5 +114,29 @@ export const leccion: Leccion = {
       correcta: 1,
       explicacion: 'Con GROUP BY, en el SELECT solo puedes poner columnas que estén en la cláusula GROUP BY o funciones de agregación. Incluir "nombre" sin agregarla causaría un error porque SQL no sabe qué valor de nombre mostrar para cada grupo.',
     },
+    {
+      id: 'q2',
+      pregunta: '¿Puedes agrupar por múltiples columnas?',
+      opciones: [
+        'No, solo por una columna',
+        'Sí, GROUP BY col1, col2 agrupa por la combinación de ambas',
+        'Solo si son del mismo tipo de dato',
+        'Solo si una es numérica y otra texto',
+      ],
+      correcta: 1,
+      explicacion: 'Puedes agrupar por múltiples columnas. GROUP BY departamento, ciudad crea un grupo para cada combinación única de departamento y ciudad.',
+    },
+    {
+      id: 'q3',
+      pregunta: '¿Qué pasa si haces GROUP BY sin ninguna función de agregación en SELECT?',
+      opciones: [
+        'Da un error',
+        'Funciona como DISTINCT, devolviendo valores únicos de la columna agrupada',
+        'Devuelve todas las filas sin cambios',
+        'Devuelve la primera fila de cada grupo',
+      ],
+      correcta: 1,
+      explicacion: 'GROUP BY sin funciones de agregación funciona de forma similar a DISTINCT: devuelve un valor único por cada grupo. Es válido pero generalmente se prefiere DISTINCT para ese propósito.',
+    },
   ],
 };

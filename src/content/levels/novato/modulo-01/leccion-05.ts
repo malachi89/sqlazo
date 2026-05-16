@@ -83,5 +83,29 @@ export const leccion: Leccion = {
       correcta: 1,
       explicacion: 'DISTINCT va inmediatamente después de SELECT: SELECT DISTINCT columna FROM tabla.',
     },
+    {
+      id: 'q2',
+      pregunta: '¿Qué hace SELECT DISTINCT departamento, ciudad FROM empleados?',
+      opciones: [
+        'Elimina duplicados de departamento solamente',
+        'Elimina duplicados de ciudad solamente',
+        'Elimina filas donde la combinación de departamento Y ciudad es idéntica',
+        'Devuelve todos los departamentos y todas las ciudades por separado',
+      ],
+      correcta: 2,
+      explicacion: 'Con múltiples columnas, DISTINCT elimina filas donde la COMBINACIÓN completa de valores es idéntica. Dos empleados en Ventas/Madrid cuentan como duplicado; uno en Ventas/Madrid y otro en Ventas/Barcelona no.',
+    },
+    {
+      id: 'q3',
+      pregunta: '¿Cuál es la diferencia entre DISTINCT y GROUP BY sin agregaciones?',
+      opciones: [
+        'DISTINCT es más rápido siempre',
+        'GROUP BY es más rápido siempre',
+        'Son funcionalmente equivalentes, pero GROUP BY puede ser más lento en algunas BD',
+        'No hay ninguna diferencia',
+      ],
+      correcta: 2,
+      explicacion: 'DISTINCT y GROUP BY sin funciones de agregación producen el mismo resultado. Sin embargo, GROUP BY puede ser más lento porque internamente hace un paso de agrupación adicional que no es necesario.',
+    },
   ],
 };
