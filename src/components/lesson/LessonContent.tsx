@@ -52,7 +52,7 @@ function EjemploEditor({ sql, setupSql, tablaResultado }: Pick<Extract<SeccionCo
                 <tr key={ri} className="border-t border-gray-100 dark:border-gray-800">
                   {fila.map((celda, ci) => (
                     <td key={ci} className="px-3 py-1.5 text-gray-700 dark:text-gray-300 font-mono">
-                      {celda === null ? <span className="text-gray-400 italic">NULL</span> : String(celda)}
+                      {celda === null ? <span className="text-gray-500 italic">NULL</span> : String(celda)}
                     </td>
                   ))}
                 </tr>
@@ -193,7 +193,7 @@ function renderSeccion(seccion: SeccionContenido) {
                   <tr key={ri} className={`border-t border-gray-100 dark:border-gray-800 ${ri % 2 === 0 ? '' : 'bg-gray-50/50 dark:bg-gray-800/30'}`}>
                     {fila.map((celda, ci) => (
                       <td key={ci} className="px-4 py-2.5 text-gray-700 dark:text-gray-300">
-                        {celda === null ? <span className="text-gray-400 italic text-xs">NULL</span> : String(celda)}
+                        {celda === null ? <span className="text-gray-500 italic text-xs">NULL</span> : String(celda)}
                       </td>
                     ))}
                   </tr>
@@ -270,7 +270,7 @@ export function LessonContent({ secciones, onTerminar }: LessonContentProps) {
             />
           ))}
         </div>
-        <span className="text-xs text-gray-400 dark:text-gray-500 font-medium tabular-nums whitespace-nowrap">
+        <span className="text-xs text-gray-600 dark:text-gray-400 font-medium tabular-nums whitespace-nowrap">
           {slide + 1} / {total}
         </span>
       </div>

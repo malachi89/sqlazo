@@ -28,6 +28,23 @@ INSERT INTO ventas VALUES (5,2,6,4,'2024-02-10',1599.96);
 INSERT INTO ventas VALUES (6,5,1,1,'2024-02-20',1299.99);
 INSERT INTO ventas VALUES (7,1,2,10,'2024-03-01',299.90);
 INSERT INTO ventas VALUES (8,4,5,2,'2024-03-10',159.98);
+CREATE TABLE clientes (id INTEGER PRIMARY KEY, nombre TEXT, ciudad TEXT, segmento TEXT);
+INSERT INTO clientes VALUES (1,'Acme Corp','Madrid','Premium');
+INSERT INTO clientes VALUES (2,'Beta S.L.','Barcelona','Estándar');
+INSERT INTO clientes VALUES (3,'Gamma Inc','Valencia','Premium');
+INSERT INTO clientes VALUES (4,'Delta Co','Bilbao','Estándar');
+INSERT INTO clientes VALUES (5,'Epsilon Ltd','Sevilla','Básico');
+CREATE TABLE pedidos (id INTEGER PRIMARY KEY, cliente_id INTEGER, empleado_id INTEGER, producto_id INTEGER, cantidad INTEGER, total REAL, fecha TEXT, estado TEXT);
+INSERT INTO pedidos VALUES (1,1,1,2,5,149.95,'2024-01-10','completado');
+INSERT INTO pedidos VALUES (2,2,2,1,2,2599.98,'2024-01-15','completado');
+INSERT INTO pedidos VALUES (3,1,1,3,3,269.97,'2024-01-20','pendiente');
+INSERT INTO pedidos VALUES (4,3,3,4,1,499.99,'2024-02-05','completado');
+INSERT INTO pedidos VALUES (5,2,2,6,4,1599.96,'2024-02-10','enviado');
+INSERT INTO pedidos VALUES (6,5,5,1,1,1299.99,'2024-02-20','completado');
+INSERT INTO pedidos VALUES (7,1,1,2,10,299.90,'2024-03-01','completado');
+INSERT INTO pedidos VALUES (8,4,4,5,2,159.98,'2024-03-10','pendiente');
+INSERT INTO pedidos VALUES (9,3,5,1,1,1299.99,'2024-03-15','completado');
+INSERT INTO pedidos VALUES (10,5,2,6,2,799.98,'2024-03-20','enviado');
 `;
 
 export const ejerciciosIntermedio: EjercicioBanco[] = [

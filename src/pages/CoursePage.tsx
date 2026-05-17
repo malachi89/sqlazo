@@ -23,7 +23,7 @@ export function CoursePage() {
   if (!estaDesbloqueado(nivel.id as Nivel)) {
     return (
       <div className="text-center py-16">
-        <Lock size={48} className="text-gray-400 mx-auto mb-4" />
+        <Lock size={48} className="text-gray-500 mx-auto mb-4" />
         <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-2">Nivel bloqueado</h2>
         <p className="text-gray-500 dark:text-gray-400">Completa el nivel anterior para desbloquear este.</p>
         <Link to="/" className="text-blue-500 hover:underline mt-4 inline-block">Volver al inicio</Link>
@@ -47,7 +47,7 @@ export function CoursePage() {
           </div>
         </div>
         <ProgressBar valor={completadas} max={total} color={nivel.bgClase} mostrarPorcentaje altura="md" />
-        <p className="text-xs text-gray-400 mt-2">{completadas} de {total} lecciones completadas</p>
+        <p className="text-xs text-gray-500 mt-2">{completadas} de {total} lecciones completadas</p>
       </div>
 
       {/* Módulos */}
@@ -67,7 +67,7 @@ export function CoursePage() {
                   <h2 className="font-semibold text-gray-900 dark:text-white">{modulo.titulo}</h2>
                   <p className="text-xs text-gray-500 dark:text-gray-400">{modulo.descripcion}</p>
                 </div>
-                <span className="text-sm text-gray-400">{completadasModulo}/{leccionesModulo.length}</span>
+                <span className="text-sm text-gray-500">{completadasModulo}/{leccionesModulo.length}</span>
               </div>
 
               {/* Lecciones */}
@@ -90,13 +90,13 @@ export function CoursePage() {
                       </div>
                       <div className="flex-1 min-w-0">
                         <p className="text-sm font-medium text-gray-900 dark:text-white truncate">
-                          <span className="text-gray-400 mr-2">{mi + 1}.{li + 1}</span>
+                          <span className="text-gray-500 mr-2">{mi + 1}.{li + 1}</span>
                           {leccion.titulo}
                         </p>
-                        <p className="text-xs text-gray-400 truncate mt-0.5">{leccion.descripcion}</p>
+                        <p className="text-xs text-gray-500 truncate mt-0.5">{leccion.descripcion}</p>
                       </div>
                       <div className="flex items-center gap-3 flex-shrink-0">
-                        <span className="flex items-center gap-1 text-xs text-gray-400">
+                        <span className="flex items-center gap-1 text-xs text-gray-500">
                           <Clock size={12} /> {leccion.duracionMinutos} min
                         </span>
                         {leccion.ejercicios.length > 0 && (

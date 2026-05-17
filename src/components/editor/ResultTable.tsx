@@ -11,7 +11,7 @@ interface ResultTableProps {
 export function ResultTable({ resultado, esCorrecto, className = '' }: ResultTableProps) {
   if (!resultado) {
     return (
-      <div className={`flex flex-col items-center justify-center py-12 text-gray-400 dark:text-gray-600 ${className}`}>
+      <div className={`flex flex-col items-center justify-center py-12 text-gray-500 dark:text-gray-600 ${className}`}>
         <Table size={40} className="mb-3 opacity-30" />
         <p className="text-sm">Ejecuta una consulta para ver los resultados</p>
       </div>
@@ -87,7 +87,7 @@ export function ResultTable({ resultado, esCorrecto, className = '' }: ResultTab
                     className="px-3 py-2 text-gray-800 dark:text-gray-200 border-b border-gray-100 dark:border-gray-800 whitespace-nowrap font-mono text-xs"
                   >
                     {celda === null ? (
-                      <span className="text-gray-400 dark:text-gray-600 italic">NULL</span>
+                      <span className="text-gray-500 dark:text-gray-600 italic">NULL</span>
                     ) : (
                       String(celda)
                     )}
@@ -99,7 +99,7 @@ export function ResultTable({ resultado, esCorrecto, className = '' }: ResultTab
         </table>
       </div>
       <div className="mt-1.5 flex items-center justify-between">
-        <p className="text-xs text-gray-400 dark:text-gray-500">
+        <p className="text-xs text-gray-500 dark:text-gray-400">
           {resultado.filas.length} fila{resultado.filas.length !== 1 ? 's' : ''} devuelta{resultado.filas.length !== 1 ? 's' : ''}
         </p>
         {esCorrecto === true && (

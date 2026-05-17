@@ -25,6 +25,22 @@ INSERT INTO ventas_mensuales VALUES (9,4,'2024-03',4800);
 INSERT INTO ventas_mensuales VALUES (10,5,'2024-01',18000);
 INSERT INTO ventas_mensuales VALUES (11,5,'2024-02',22000);
 INSERT INTO ventas_mensuales VALUES (12,5,'2024-03',19500);
+CREATE TABLE proyectos (id INTEGER PRIMARY KEY, nombre TEXT, presupuesto REAL, inicio TEXT, fin TEXT, estado TEXT);
+INSERT INTO proyectos VALUES (1,'Sistema CRM',150000,'2024-01-01','2024-06-30','activo');
+INSERT INTO proyectos VALUES (2,'App Móvil',80000,'2024-02-01','2024-05-31','activo');
+INSERT INTO proyectos VALUES (3,'Portal Web',60000,'2024-03-01','2024-07-31','planificado');
+INSERT INTO proyectos VALUES (4,'Data Warehouse',200000,'2023-07-01','2024-03-31','completado');
+CREATE TABLE asignaciones (id INTEGER PRIMARY KEY, empleado_id INTEGER, proyecto_id INTEGER, rol TEXT, horas INTEGER);
+INSERT INTO asignaciones VALUES (1,2,1,'Líder Técnico',120);
+INSERT INTO asignaciones VALUES (2,5,1,'Desarrollador',80);
+INSERT INTO asignaciones VALUES (3,6,1,'Desarrollador',80);
+INSERT INTO asignaciones VALUES (4,2,2,'Arquitecto',60);
+INSERT INTO asignaciones VALUES (5,6,2,'Desarrollador',100);
+INSERT INTO asignaciones VALUES (6,7,3,'Analista',90);
+INSERT INTO asignaciones VALUES (7,2,3,'Desarrollador',40);
+INSERT INTO asignaciones VALUES (8,5,4,'Líder',150);
+INSERT INTO asignaciones VALUES (9,2,4,'Arquitecto',100);
+INSERT INTO asignaciones VALUES (10,6,4,'Desarrollador',120);
 `;
 
 export const ejerciciosAvanzado: EjercicioBanco[] = [

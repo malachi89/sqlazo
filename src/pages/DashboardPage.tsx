@@ -35,7 +35,7 @@ export function DashboardPage() {
             </div>
             <div>
               <p className="font-bold text-gray-900 dark:text-white text-lg">{nivelEst.titulo}</p>
-              <p className="text-sm text-gray-500">{progress.xpTotal} XP acumulados</p>
+              <p className="text-sm text-gray-600">{progress.xpTotal} XP acumulados</p>
             </div>
           </div>
           <XpBar xpTotal={progress.xpTotal} />
@@ -47,7 +47,7 @@ export function DashboardPage() {
             <span className="font-semibold text-gray-900 dark:text-white text-sm">Racha diaria</span>
           </div>
           <StreakBadge racha={progress.racha} />
-          <p className="text-xs text-gray-400 mt-2">
+          <p className="text-xs text-gray-500 mt-2">
             {progress.racha === 0 ? 'Estudia hoy para empezar tu racha' :
              progress.racha < 3 ? '¡Sigue así!' :
              progress.racha < 7 ? '¡Excelente racha!' :
@@ -67,7 +67,7 @@ export function DashboardPage() {
           <div key={stat.label} className="p-4 bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-700 text-center">
             <div className="flex justify-center mb-2">{stat.icono}</div>
             <p className="text-2xl font-bold text-gray-900 dark:text-white">{stat.value}</p>
-            <p className="text-xs text-gray-400 mt-0.5">{stat.label}</p>
+            <p className="text-xs text-gray-500 mt-0.5">{stat.label}</p>
           </div>
         ))}
       </div>
@@ -118,7 +118,7 @@ export function DashboardPage() {
       <div className="text-center pb-4">
         <button
           onClick={handleReset}
-          className="text-xs text-gray-400 hover:text-red-500 transition-colors"
+          className="text-xs text-gray-500 hover:text-red-500 transition-colors"
         >
           Reiniciar todo mi progreso
         </button>

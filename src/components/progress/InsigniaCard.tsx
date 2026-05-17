@@ -19,7 +19,7 @@ export function InsigniaCard({ insignia, obtenida }: InsigniaCardProps) {
     >
       {!obtenida && (
         <div className="absolute top-2 right-2">
-          <Lock size={12} className="text-gray-400" />
+          <Lock size={12} className="text-gray-500" />
         </div>
       )}
       <span className="text-3xl">{insignia.icono}</span>
@@ -28,7 +28,7 @@ export function InsigniaCard({ insignia, obtenida }: InsigniaCardProps) {
           {insignia.nombre}
         </p>
         {obtenida && (
-          <p className="text-xs text-gray-400 dark:text-gray-500 mt-0.5">{insignia.descripcion}</p>
+          <p className="text-xs text-gray-600 dark:text-gray-400 mt-0.5">{insignia.descripcion}</p>
         )}
       </div>
     </div>

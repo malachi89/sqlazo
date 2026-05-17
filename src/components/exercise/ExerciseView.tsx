@@ -56,7 +56,7 @@ export function ExerciseView({ ejercicio }: ExerciseViewProps) {
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2 mb-2">
             <Badge nivel={ejercicio.nivel}>{ejercicio.nivel.replace('-', ' ')}</Badge>
-            <span className="text-xs text-gray-400 font-mono">{ejercicio.id}</span>
+            <span className="text-xs text-gray-500 font-mono">{ejercicio.id}</span>
             {yaCompletado && (
               <span className="flex items-center gap-1 text-xs text-green-600 dark:text-green-400 font-medium ml-auto">
                 <CheckCircle size={12} /> Completado

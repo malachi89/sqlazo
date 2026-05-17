@@ -129,7 +129,7 @@ export function LessonView({ leccion }: LessonViewProps) {
         {pestana === 'ejercicios' && (
           <div className="space-y-8">
             {leccion.ejercicios.length === 0 ? (
-              <p className="text-center text-gray-400 py-8">Esta lección no tiene ejercicios prácticos. ¡Pasa al cuestionario!</p>
+              <p className="text-center text-gray-500 py-8">Esta lección no tiene ejercicios prácticos. ¡Pasa al cuestionario!</p>
             ) : (
               <>
                 <div className="flex items-center justify-between mb-2">
@@ -138,7 +138,7 @@ export function LessonView({ leccion }: LessonViewProps) {
                 </div>
                 {leccion.ejercicios.map((ej, i) => (
                   <div key={ej.id}>
-                    <p className="text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-3">
+                    <p className="text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider mb-3">
                       Ejercicio {i + 1}
                     </p>
                     <ExercisePanel
@@ -167,7 +167,7 @@ export function LessonView({ leccion }: LessonViewProps) {
         {pestana === 'cuestionario' && (
           <div>
             {leccion.cuestionario.length === 0 ? (
-              <p className="text-center text-gray-400 py-8">Esta lección no tiene cuestionario.</p>
+              <p className="text-center text-gray-500 py-8">Esta lección no tiene cuestionario.</p>
             ) : (
               <Quiz
                 preguntas={leccion.cuestionario}

@@ -15,7 +15,7 @@ export function XpBar({ xpTotal, compact = false }: XpBarProps) {
       <div className="flex items-center gap-2">
         <Zap size={14} className="text-yellow-400" />
         <span className="text-sm font-medium text-gray-700 dark:text-gray-200">{xpTotal} XP</span>
-        <span className="text-xs text-gray-400 dark:text-gray-500">· {nivel.titulo}</span>
+        <span className="text-xs text-gray-600 dark:text-gray-400">· {nivel.titulo}</span>
       </div>
     );
   }
@@ -26,8 +26,8 @@ export function XpBar({ xpTotal, compact = false }: XpBarProps) {
         <span className="font-medium text-yellow-500 flex items-center gap-1">
           <Zap size={12} /> {xpTotal} XP
         </span>
-        <span className="text-gray-400 dark:text-gray-500">{nivel.titulo}</span>
-        <span className="text-gray-400 dark:text-gray-500">{nivel.xpSiguiente} XP</span>
+        <span className="text-gray-600 dark:text-gray-400">{nivel.titulo}</span>
+        <span className="text-gray-600 dark:text-gray-400">{nivel.xpSiguiente} XP</span>
       </div>
       <div className="h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
         <div

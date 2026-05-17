@@ -24,6 +24,21 @@ function normalizarTipo(t: string): string {
   return m ? m[1].toUpperCase() : t.toUpperCase()
 }
 
+export const ESQUEMA_GLOBAL_SQL = `
+CREATE TABLE departamentos (id INTEGER PRIMARY KEY, nombre TEXT, presupuesto REAL, ciudad TEXT);
+CREATE TABLE empleados (id INTEGER PRIMARY KEY, nombre TEXT, departamento_id INTEGER, salario REAL, fecha_contrato TEXT, activo INTEGER);
+CREATE TABLE productos (id INTEGER PRIMARY KEY, nombre TEXT, categoria_id INTEGER, precio REAL, stock INTEGER, proveedor_id INTEGER);
+CREATE TABLE categorias (id INTEGER PRIMARY KEY, nombre TEXT);
+CREATE TABLE clientes (id INTEGER PRIMARY KEY, nombre TEXT, pais TEXT, email TEXT);
+CREATE TABLE pedidos (id INTEGER PRIMARY KEY, cliente_id INTEGER, empleado_id INTEGER, total REAL, fecha TEXT, estado TEXT);
+CREATE TABLE proveedores (id INTEGER PRIMARY KEY, nombre TEXT, pais TEXT, contacto TEXT);
+CREATE TABLE inventario_ajustes (id INTEGER PRIMARY KEY, producto_id INTEGER, cantidad_ajuste INTEGER, motivo TEXT, fecha TEXT);
+CREATE TABLE ventas (id INTEGER PRIMARY KEY, empleado_id INTEGER, producto_id INTEGER, cantidad INTEGER, fecha TEXT, monto REAL);
+CREATE TABLE ventas_mensuales (id INTEGER PRIMARY KEY, empleado_id INTEGER, mes TEXT, ventas REAL);
+CREATE TABLE proyectos (id INTEGER PRIMARY KEY, nombre TEXT, presupuesto REAL, inicio TEXT, fin TEXT, estado TEXT);
+CREATE TABLE asignaciones (id INTEGER PRIMARY KEY, empleado_id INTEGER, proyecto_id INTEGER, rol TEXT, horas INTEGER);
+`;
+
 export function extractSchema(setupSql: string): EsquemaBD {
   const tablas: TablaSchema[] = []
   const FK_REFS: { origen: string; col: string; ref: string }[] = []

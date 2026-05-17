@@ -44,7 +44,7 @@ export function Quiz({ preguntas, onCompletar, yaCompletado, puntuacionPrevia = 
     );
     return (
       <div className="flex flex-col items-center gap-4 py-8 text-center">
-        <Trophy size={48} className={pct >= 70 ? 'text-yellow-400' : 'text-gray-400'} />
+        <Trophy size={48} className={pct >= 70 ? 'text-yellow-400' : 'text-gray-500'} />
         <div>
           <p className="text-2xl font-bold text-gray-900 dark:text-white">{pct}%</p>
           <p className="text-sm text-gray-500 dark:text-gray-400">
@@ -112,7 +112,7 @@ export function Quiz({ preguntas, onCompletar, yaCompletado, puntuacionPrevia = 
                   mostrarResultado && seleccionada && correcto ? 'border-green-500 bg-green-500 text-white' :
                   mostrarResultado && seleccionada && !correcto ? 'border-red-500 bg-red-500 text-white' :
                   mostrarResultado && esCorrecta ? 'border-green-400 bg-green-100 dark:bg-green-900/50 text-green-700 dark:text-green-300' :
-                  'border-gray-300 dark:border-gray-600 text-gray-400'
+                  'border-gray-300 dark:border-gray-600 text-gray-500'
                 }`}>
                   {String.fromCharCode(65 + oi)}
                 </span>

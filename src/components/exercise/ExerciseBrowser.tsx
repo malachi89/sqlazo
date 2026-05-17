@@ -61,7 +61,7 @@ export function ExerciseBrowser({
       {/* Filtros */}
       <div className="p-4 space-y-3 border-b border-gray-200 dark:border-gray-700">
         <div className="relative">
-          <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+          <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500" />
           <input
             type="text"
             placeholder="Buscar ejercicios..."
@@ -84,7 +84,7 @@ export function ExerciseBrowser({
                   filtroNivel === n
                     ? 'bg-blue-600 text-white'
                     : isLocked
-                    ? 'bg-gray-100 dark:bg-gray-800 text-gray-400 cursor-not-allowed'
+                    ? 'bg-gray-100 dark:bg-gray-800 text-gray-500 cursor-not-allowed'
                     : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700'
                 }`}
               >
@@ -110,7 +110,7 @@ export function ExerciseBrowser({
       {/* Lista */}
       <div className="flex-1 overflow-y-auto">
         <div className="p-2 space-y-1">
-          <p className="text-xs text-gray-400 px-2 py-1">{filtrados.length} ejercicio{filtrados.length !== 1 ? 's' : ''}</p>
+          <p className="text-xs text-gray-500 px-2 py-1">{filtrados.length} ejercicio{filtrados.length !== 1 ? 's' : ''}</p>
           {filtrados.map(ej => {
             const completado = progress.ejerciciosBanco[ej.id];
             const activo = ejercicioActivo === ej.id;
@@ -132,7 +132,7 @@ export function ExerciseBrowser({
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 mb-1">
                     <Badge nivel={ej.nivel} className="text-xs">{ej.nivel.replace('-', ' ')}</Badge>
-                    <span className="text-xs text-gray-400 font-mono truncate">{ej.id}</span>
+                    <span className="text-xs text-gray-500 font-mono truncate">{ej.id}</span>
                   </div>
                   <p className={`text-sm font-medium truncate ${activo ? 'text-blue-700 dark:text-blue-300' : 'text-gray-800 dark:text-gray-200'}`}>
                     {ej.titulo}
@@ -142,7 +142,7 @@ export function ExerciseBrowser({
             );
           })}
           {filtrados.length === 0 && (
-            <div className="text-center py-8 text-gray-400 text-sm">
+            <div className="text-center py-8 text-gray-500 text-sm">
               No se encontraron ejercicios
             </div>
           )}

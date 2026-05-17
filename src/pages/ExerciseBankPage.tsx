@@ -59,7 +59,7 @@ export function ExerciseBankPage() {
         {seleccionado ? (
           <ExerciseView key={seleccionado.id} ejercicio={seleccionado} />
         ) : (
-          <div className="flex flex-col items-center justify-center h-full text-center text-gray-400">
+          <div className="flex flex-col items-center justify-center h-full text-center text-gray-500">
             <span className="text-6xl mb-4">💪</span>
             <h2 className="text-xl font-semibold text-gray-700 dark:text-gray-300 mb-2">Banco de ejercicios</h2>
             <p className="text-sm max-w-sm">

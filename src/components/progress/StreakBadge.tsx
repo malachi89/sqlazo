@@ -7,7 +7,7 @@ interface StreakBadgeProps {
 }
 
 export function StreakBadge({ racha, compact = false }: StreakBadgeProps) {
-  const color = racha >= 10 ? 'text-red-500' : racha >= 5 ? 'text-orange-500' : racha >= 3 ? 'text-yellow-500' : 'text-gray-400';
+  const color = racha >= 10 ? 'text-red-500' : racha >= 5 ? 'text-orange-500' : racha >= 3 ? 'text-yellow-500' : 'text-gray-500';
 
   if (compact) {
     return (
@@ -23,7 +23,7 @@ export function StreakBadge({ racha, compact = false }: StreakBadgeProps) {
       <Flame size={18} className={color} />
       <div>
         <p className={`text-sm font-bold ${color}`}>{racha}</p>
-        <p className="text-xs text-gray-400">días</p>
+        <p className="text-xs text-gray-500">días</p>
       </div>
     </div>
   );

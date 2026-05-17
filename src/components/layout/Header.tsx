@@ -5,6 +5,7 @@ import { useTheme } from '../../context/ThemeContext';
 import { useProgress } from '../../hooks/useProgress';
 import { useSchema } from '../../context/SchemaContext';
 import { SchemaExplorer } from '../exercise/SchemaExplorer';
+import { extractSchema, ESQUEMA_GLOBAL_SQL } from '../../utils/schemaParser';
 import { XpBar } from '../progress/XpBar';
 import { StreakBadge } from '../progress/StreakBadge';
 import { getNivelEstudiante } from '../../utils/gamification';
@@ -25,6 +26,9 @@ export function Header({ sidebarAbierto, onToggleSidebar }: HeaderProps) {
   const location = useLocation();
   const [schemaAbierto, setSchemaAbierto] = useState(false);
   const [mostrarHint, setMostrarHint] = useState(false);
+  const [mostrarTodas, setMostrarTodas] = useState(false);
+  const esquemaGlobal = extractSchema(ESQUEMA_GLOBAL_SQL);
+  const esquemaMostrado = mostrarTodas ? esquemaGlobal : esquema;
 
   useEffect(() => {
     if (!esquema || !enEjercicio) {
@@ -84,38 +88,37 @@ export function Header({ sidebarAbierto, onToggleSidebar }: HeaderProps) {
             </Link>
           );
         })}
-        {esquema && enEjercicio && (
-          <div className="relative">
-            <button
-              onClick={() => { setSchemaAbierto(!schemaAbierto); setMostrarHint(false); }}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm transition-colors ${
-                schemaAbierto
-                  ? 'bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 font-medium'
-                  : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-gray-100'
-              }`}
-            >
-              <TableProperties size={16} />
-              Esquema
-            </button>
+        <div className="relative">
+          <button
+            onClick={() => { setSchemaAbierto(!schemaAbierto); if (!esquema) setMostrarTodas(true); setMostrarHint(false); }}
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm transition-colors ${
+              schemaAbierto
+                ? 'bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 font-medium'
+                : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-gray-100'
+            }`}
+            title="Ver esquema de la BD"
+          >
+            <TableProperties size={16} />
+            Esquema
+          </button>
 
-            {mostrarHint && (
-              <div className="absolute left-0 top-full mt-3 w-64 z-50">
-                <div className="absolute -top-1.5 left-5 w-3 h-3 bg-indigo-500 rotate-45" />
-                <div className="relative bg-indigo-500 text-white text-sm rounded-xl px-3 py-2.5 shadow-xl">
-                  <button
-                    onClick={() => setMostrarHint(false)}
-                    className="absolute top-2 right-2 text-indigo-200 hover:text-white transition-colors"
-                  >
-                    <X size={14} />
-                  </button>
-                  <p className="pr-5 leading-snug">
-                    Aquí tienes el esquema de las tablas — las columnas y tipos disponibles para usar en tu query.
-                  </p>
-                </div>
+          {mostrarHint && (
+            <div className="absolute left-0 top-full mt-3 w-64 z-50">
+              <div className="absolute -top-1.5 left-5 w-3 h-3 bg-indigo-500 rotate-45" />
+              <div className="relative bg-indigo-500 text-white text-sm rounded-xl px-3 py-2.5 shadow-xl">
+                <button
+                  onClick={() => setMostrarHint(false)}
+                  className="absolute top-2 right-2 text-indigo-200 hover:text-white transition-colors"
+                >
+                  <X size={14} />
+                </button>
+                <p className="pr-5 leading-snug">
+                  Aquí tienes el esquema de las tablas — las columnas y tipos disponibles para usar en tu query.
+                </p>
               </div>
-            )}
-          </div>
-        )}
+            </div>
+          )}
+        </div>
       </nav>
 
       {/* XP y racha */}
@@ -124,7 +127,7 @@ export function Header({ sidebarAbierto, onToggleSidebar }: HeaderProps) {
           <XpBar xpTotal={progress.xpTotal} compact />
         </div>
         <StreakBadge racha={progress.racha} compact />
-        <span className="text-xs text-gray-400 dark:text-gray-500 hidden xl:block">{nivelEst.titulo}</span>
+        <span className="text-xs text-gray-600 dark:text-gray-400 hidden xl:block">{nivelEst.titulo}</span>
       </div>
 
       {/* Toggle tema */}
@@ -137,23 +140,34 @@ export function Header({ sidebarAbierto, onToggleSidebar }: HeaderProps) {
       </button>
 
       {/* Schema panel (Flotante y no obstructivo) */}
-      {schemaAbierto && esquema && (
+      {schemaAbierto && (esquema || mostrarTodas) && (
         <div className="fixed top-16 bottom-0 right-0 z-40 flex justify-end pointer-events-none">
           <div className="relative w-96 bg-white dark:bg-gray-950 border-l border-gray-200 dark:border-gray-800 h-full overflow-y-auto shadow-2xl pointer-events-auto">
-            <div className="sticky top-0 z-10 flex items-center justify-between px-4 py-3 border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950">
-              <div className="flex items-center gap-2">
-                <TableProperties size={16} className="text-indigo-500" />
-                <span className="font-semibold text-sm text-gray-900 dark:text-white">Esquema de la BD</span>
+            <div className="sticky top-0 z-10 px-4 py-3 border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 space-y-2">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <TableProperties size={16} className="text-indigo-500" />
+                  <span className="font-semibold text-sm text-gray-900 dark:text-white">Esquema de la BD</span>
+                </div>
+                <button
+                  onClick={() => setSchemaAbierto(false)}
+                  className="p-1 rounded-lg text-gray-500 hover:text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 transition-colors"
+                >
+                  <X size={16} />
+                </button>
               </div>
-              <button
-                onClick={() => setSchemaAbierto(false)}
-                className="p-1 rounded-lg text-gray-400 hover:text-gray-600 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 transition-colors"
-              >
-                <X size={16} />
-              </button>
+              <label className="flex items-center gap-2 cursor-pointer select-none">
+                <div
+                  onClick={() => setMostrarTodas(!mostrarTodas)}
+                  className={`relative w-8 h-4 rounded-full transition-colors ${mostrarTodas ? 'bg-indigo-500' : 'bg-gray-300 dark:bg-gray-600'}`}
+                >
+                  <span className={`absolute top-0.5 left-0.5 w-3 h-3 bg-white rounded-full shadow transition-transform ${mostrarTodas ? 'translate-x-4' : ''}`} />
+                </div>
+                <span className="text-xs text-gray-500 dark:text-gray-400">Mostrar todas las tablas</span>
+              </label>
             </div>
             <div className="p-4">
-              <SchemaExplorer esquema={esquema} embedded />
+              <SchemaExplorer esquema={esquemaMostrado!} embedded />
             </div>
           </div>
         </div>

@@ -63,8 +63,8 @@ export function Sidebar({ curriculum, abierto }: SidebarProps) {
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center justify-between">
                     <span className="text-sm font-semibold text-gray-900 dark:text-white truncate">{nivel.titulo}</span>
-                    {!desbloqueado && <Lock size={12} className="text-gray-400 flex-shrink-0 ml-1" />}
-                    {desbloqueado && <span className="text-xs text-gray-400">{pct}%</span>}
+                    {!desbloqueado && <Lock size={12} className="text-gray-500 flex-shrink-0 ml-1" />}
+                    {desbloqueado && <span className="text-xs text-gray-500">{pct}%</span>}
                   </div>
                   {desbloqueado && (
                     <ProgressBar
@@ -87,11 +87,11 @@ export function Sidebar({ curriculum, abierto }: SidebarProps) {
                       onClick={() => toggleModulo(modulo.id)}
                       className="w-full flex items-center gap-2 px-4 py-2.5 text-left hover:bg-gray-50 dark:hover:bg-gray-900 transition-colors"
                     >
-                      {abierto ? <ChevronDown size={14} className="text-gray-400 flex-shrink-0" /> : <ChevronRight size={14} className="text-gray-400 flex-shrink-0" />}
+                      {abierto ? <ChevronDown size={14} className="text-gray-500 flex-shrink-0" /> : <ChevronRight size={14} className="text-gray-500 flex-shrink-0" />}
                       <span className="text-xs font-medium text-gray-600 dark:text-gray-400 truncate flex-1">
                         {modulo.titulo}
                       </span>
-                      <span className="text-xs text-gray-400 flex-shrink-0">
+                      <span className="text-xs text-gray-500 flex-shrink-0">
                         {modulo.lecciones.filter(l => progress.lecciones[l.id]?.completada).length}/{modulo.lecciones.length}
                       </span>
                     </button>

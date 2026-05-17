@@ -102,7 +102,7 @@ export function Home() {
               >
                 <div className="flex items-start justify-between mb-4">
                   <span className="text-4xl">{nivel.emoji}</span>
-                  {!desbloqueado && <Lock size={18} className="text-gray-400" />}
+                  {!desbloqueado && <Lock size={18} className="text-gray-500" />}
                   {desbloqueado && pct > 0 && (
                     <span className={`text-sm font-bold ${nivel.colorClase}`}>{pct}%</span>
                   )}
@@ -117,7 +117,7 @@ export function Home() {
                     altura="sm"
                     mostrarPorcentaje
                   />
-                  <p className="text-xs text-gray-400">{completadas}/{total} lecciones · {nivel.modulos.length} módulos</p>
+                  <p className="text-xs text-gray-500">{completadas}/{total} lecciones · {nivel.modulos.length} módulos</p>
                 </div>
                 {desbloqueado && (
                   <ChevronRight
@@ -126,7 +126,7 @@ export function Home() {
                   />
                 )}
                 {!desbloqueado && (
-                  <p className="text-xs text-gray-400 mt-2">
+                  <p className="text-xs text-gray-500 mt-2">
                     Completa el nivel anterior para desbloquear
                   </p>
                 )}
