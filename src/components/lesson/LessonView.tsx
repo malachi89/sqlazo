@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import type { Leccion } from '../../types';
 import { LessonContent } from './LessonContent';
 import { ExercisePanel } from './ExercisePanel';
@@ -6,7 +6,7 @@ import { Quiz } from './Quiz';
 import { useProgress } from '../../hooks/useProgress';
 import { ConfettiEffect } from '../ui/ConfettiEffect';
 import { ProgressBar } from '../progress/ProgressBar';
-import { Clock, Tag, BookOpen, Code, HelpCircle, ChevronRight } from 'lucide-react';
+import { Clock, Tag, BookOpen, Code, HelpCircle, ChevronLeft, ChevronRight } from 'lucide-react';
 
 type Pestana = 'contenido' | 'ejercicios' | 'cuestionario';
 
@@ -17,6 +17,12 @@ interface LessonViewProps {
 export function LessonView({ leccion }: LessonViewProps) {
   const [pestana, setPestana] = useState<Pestana>('contenido');
   const [confeti, setConfeti] = useState(false);
+  const [ejercicioSlide, setEjercicioSlide] = useState(0);
+
+  useEffect(() => {
+    setEjercicioSlide(0);
+  }, [pestana]);
+
   const { progress, completarLeccion } = useProgress();
   const progresoLeccion = progress.lecciones[leccion.id];
 
@@ -127,38 +133,79 @@ export function LessonView({ leccion }: LessonViewProps) {
         )}
 
         {pestana === 'ejercicios' && (
-          <div className="space-y-8">
+          <div>
             {leccion.ejercicios.length === 0 ? (
               <p className="text-center text-gray-500 py-8">Esta lección no tiene ejercicios prácticos. ¡Pasa al cuestionario!</p>
             ) : (
               <>
+                {totalEjercicios > 1 && (
+                  <div className="flex items-center gap-3 pb-5">
+                    <div className="flex-1 flex gap-1">
+                      {leccion.ejercicios.map((_, i) => (
+                        <button
+                          key={i}
+                          onClick={() => setEjercicioSlide(i)}
+                          className={`h-2 flex-1 rounded-full transition-all duration-300 ${
+                            i < ejercicioSlide
+                              ? 'bg-blue-500'
+                              : i === ejercicioSlide
+                              ? 'bg-blue-400'
+                              : 'bg-gray-200 dark:bg-gray-700'
+                          }`}
+                          aria-label={`Ir a ejercicio ${i + 1}`}
+                        />
+                      ))}
+                    </div>
+                    <span className="text-xs text-gray-600 dark:text-gray-400 font-medium tabular-nums whitespace-nowrap">
+                      {ejercicioSlide + 1} / {totalEjercicios}
+                    </span>
+                  </div>
+                )}
+
                 <div className="flex items-center justify-between mb-2">
                   <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Progreso: {ejerciciosOk}/{totalEjercicios}</span>
                   <ProgressBar valor={ejerciciosOk} max={totalEjercicios} mostrarPorcentaje className="w-32" />
                 </div>
-                {leccion.ejercicios.map((ej, i) => (
-                  <div key={ej.id}>
-                    <p className="text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider mb-3">
-                      Ejercicio {i + 1}
-                    </p>
-                    <ExercisePanel
-                      ejercicio={ej}
-                      leccionId={leccion.id}
-                      yaCompletado={ejerciciosCompletados.includes(ej.id)}
-                    />
-                    {i < leccion.ejercicios.length - 1 && <hr className="mt-8 border-gray-200 dark:border-gray-700" />}
-                  </div>
-                ))}
-                {ejerciciosOk >= totalEjercicios && leccion.cuestionario.length > 0 && (
-                  <div className="text-center pt-4 border-t border-gray-200 dark:border-gray-700">
+
+                <p className="text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider mb-3">
+                  Ejercicio {ejercicioSlide + 1}
+                </p>
+                <ExercisePanel
+                  key={leccion.ejercicios[ejercicioSlide].id}
+                  ejercicio={leccion.ejercicios[ejercicioSlide]}
+                  leccionId={leccion.id}
+                  yaCompletado={ejerciciosCompletados.includes(leccion.ejercicios[ejercicioSlide].id)}
+                />
+
+                <div className="flex items-center justify-between pt-4 mt-4 border-t border-gray-100 dark:border-gray-700">
+                  <button
+                    onClick={() => setEjercicioSlide(s => s - 1)}
+                    disabled={ejercicioSlide === 0}
+                    className="flex items-center gap-1.5 px-4 py-2.5 text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-xl transition-all disabled:opacity-0 disabled:pointer-events-none"
+                  >
+                    <ChevronLeft size={16} /> Anterior
+                  </button>
+
+                  {ejercicioSlide === totalEjercicios - 1 ? (
+                    ejerciciosOk >= totalEjercicios && leccion.cuestionario.length > 0 ? (
+                      <button
+                        onClick={() => setPestana('cuestionario')}
+                        className="inline-flex items-center gap-2 px-6 py-2.5 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white text-sm font-medium rounded-xl shadow-md transition-all"
+                      >
+                        Siguiente: Quiz <ChevronRight size={16} />
+                      </button>
+                    ) : (
+                      <span />
+                    )
+                  ) : (
                     <button
-                      onClick={() => setPestana('cuestionario')}
-                      className="inline-flex items-center gap-2 px-6 py-3 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-xl transition-colors"
+                      onClick={() => setEjercicioSlide(s => s + 1)}
+                      className="flex items-center gap-1.5 px-5 py-2.5 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-xl transition-all shadow-sm"
                     >
-                      Siguiente: Quiz <ChevronRight size={16} />
+                      Siguiente <ChevronRight size={16} />
                     </button>
-                  </div>
-                )}
+                  )}
+                </div>
               </>
             )}
           </div>
