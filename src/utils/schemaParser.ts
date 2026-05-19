@@ -92,7 +92,7 @@ export function extractSchema(setupSql: string): EsquemaBD {
 
   const INSERT_RE = /INSERT\s+INTO\s+(\w+)/gi
   while ((match = INSERT_RE.exec(setupSql)) !== null) {
-    const t = tablas.find(t => t.nombre === match[1])
+    const t = tablas.find(t => t.nombre === match![1])
     if (t) t.filas++
   }
 

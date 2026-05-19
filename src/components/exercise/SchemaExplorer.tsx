@@ -25,8 +25,8 @@ function FilaColumna({ col }: { col: ColumnaSchema }) {
   return (
     <div className="flex items-center gap-2 px-3 py-1.5 text-sm border-b border-gray-100 dark:border-gray-700/50 last:border-0">
       <div className="flex items-center gap-1 w-7 flex-shrink-0">
-        {col.pk && <Key size={13} className="text-amber-500" title="Primary Key" />}
-        {col.fk && <ArrowRightFromLine size={13} className="text-indigo-400" title="Foreign Key" />}
+        {col.pk && <Key size={13} className="text-amber-500" />}
+        {col.fk && <ArrowRightFromLine size={13} className="text-indigo-400" />}
       </div>
       <span className="font-mono text-gray-800 dark:text-gray-200 flex-1 truncate">{col.nombre}</span>
       <TipoBadge tipo={col.tipo} />

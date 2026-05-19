@@ -25,6 +25,7 @@ export interface EjercicioLeccion {
   id: string;
   titulo: string;
   descripcion: string;
+  objetivo?: string;
   setupSql: string;
   resultadoEsperado: { columnas: string[]; filas: (string | number | null)[][] };
   solucionOficial: string;
